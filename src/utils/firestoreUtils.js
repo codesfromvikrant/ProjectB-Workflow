@@ -3,7 +3,6 @@ import { db } from "../firebase/config";
 
 // Add a new document in collection "cities"
 const createDoc = async (data, id) => {
-  console.log("createDoc", data, id);
   try {
     const docRef = await setDoc(doc(db, "users", id), data);
     console.log("Document written with ID: ", docRef.id);
