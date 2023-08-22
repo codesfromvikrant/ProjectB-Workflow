@@ -12,13 +12,15 @@ const ImagesGrid = () => {
       backgroundPosition: "center",
     };
     return (
-      <div key={nanoid()} className="bg-secondary p-2 rounded-md shadow-lg">
-        <div style={style} className="h-[18rem] w-full"></div>
-      </div>
+      <div
+        key={nanoid()}
+        style={style}
+        className="h-[18rem] rounded-md shadow-md w-full"
+      ></div>
     );
   });
 
-  return <div className="grid grid-cols-5 gap-3 my-3">{renderImages}</div>;
+  return <div className="grid grid-cols-5 gap-5 my-5">{renderImages}</div>;
 };
 
 export default ImagesGrid;

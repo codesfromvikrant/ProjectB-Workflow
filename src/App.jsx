@@ -5,6 +5,8 @@ import Dashboard from "./pages/dashboard";
 import Protected from "./Protected";
 import Gallery from "./pages/Gallery";
 import Layout from "./pages/Layout";
+import Notes from "./pages/Notes";
+import NotesCRUD from "./pages/NotesCRUD";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
               }
             >
               <Route path="" element={<Gallery />} />
+              <Route path="notes" element={<Notes />} />
+              <Route path="notes/:nid" element={<NotesCRUD />} />
             </Route>
           </Route>
         </Routes>

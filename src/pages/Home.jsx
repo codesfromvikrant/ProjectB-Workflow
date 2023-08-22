@@ -13,15 +13,15 @@ export default function Home() {
         <div className="w-2/3 mx-auto">
           <div className="flex justify-center items-center gap-2 mx-auto mb-10">
             <img src={Logo} className="w-12" alt="mediaharbor-logo" />
-            <p className="text-xl font-black  text-center w-max text-slate-700">
+            <p className="text-xl font-black  text-center w-max text-slate-300">
               MediaHarbor
             </p>
           </div>
 
-          <h1 className="text-4xl text-center tracking-wide text-slate-700 mb-3 font-black">
+          <h1 className="text-4xl text-center tracking-wide text-gray-200 mb-3 font-black">
             Elevate Your Media Experience with MediaHarbor.
           </h1>
-          <p className="text-base font-normal text-center text-gray-600">
+          <p className="text-base font-light text-center text-gray-200">
             Welcome to MediaHarbor – your hub for seamless file management and
             captivating image galleries. Unleash the power of organization,
             creativity, and secure storage. Effortlessly upload, organize, and
@@ -37,7 +37,7 @@ export default function Home() {
                 e.preventDefault();
                 googleAuth();
               }}
-              className="flex justify-start items-center gap-3 bg-blue-500 text-white shadow-md px-20 py-3 rounded mt-4 font-semibold"
+              className="flex justify-start items-center gap-3 bg-blue-600 text-white shadow-md px-20 py-3 rounded mt-4 font-semibold"
             >
               <span>SignIn via </span>
               <AiOutlineGoogle className="w-max text-3xl" />

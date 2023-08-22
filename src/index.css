@@ -9,39 +9,117 @@
   --gray-200: #e5e7eb;
 
   --primary: #161616;
-  --seccondary: #1E1E1E;
-  --blureffect: #ffffff19;
+  --linear: #101011;
+  --secondary: #1e1e1e;
+  --blureffect: #ffffff11;
+  --text: #7b7c7d;
 }
 
 body {
   font-family: "Lato", sans-serif;
-  /* background: linear-gradient(60deg, var(--slate-100) 0%, var(--gray-100) 50%); */
-  background-color: var(--primary);
+  background-color: var(--linear);
+}
+
+.font-lato {
+  font-family: "Lato", sans-serif;
 }
 
 .custom-file-input::-webkit-file-upload-button {
+  width: 0.5rem;
   visibility: hidden;
 }
 
 .custom-file-input::before {
-  content: 'Upload Image';
+  content: 'Browse Image';
   display: inline-block;
-  background: #3b82f6;
-  border-radius: 20px;
-  padding: 0.6rem 2rem;
+  background: var(--linear);
+  border-radius: 0.5rem;
+  padding: 0.4rem 2rem;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
+  font-weight: 400;
+  font-size: 0.87rem;
 }
 
-.custom-file-input:hover::before {
-  border-color: black;
+/* Styling Editor */
+.ql-editor {
+  min-height: 70vh;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: white;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
 }
 
-.custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+.ql-toolbar {
+  background-color: transparent;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.ql-container {
+  border: none !important;
+  margin-top: 0.8rem !important;
+}
+
+.quill>.ql-container>.ql-editor.ql-blank::before {
+  font-size: 1rem;
+  font-style: normal;
+  width: 100%;
+  color: var(--blureffect);
+}
+
+.quill>.ql-container>.ql-editor p {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: lighter;
+  width: 100%;
+  color: var(--gray-200);
+}
+
+.ql-formats {
+  background-color: var(--linear);
+  border-radius: 0.5rem;
+  padding: 5px;
+  margin: 3px;
+}
+
+.ql-editor h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ql-editor h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ql-editor h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ql-editor h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ql-editor h5 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ql-editor h6 {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.ql-editor p {
+  margin: 0;
+  font-weight: 300;
 }

@@ -5,9 +5,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#161616',
-        'secondary': '#1E1E1E',
-        'blureffect': '#ffffff19',
+        'primary': '#101011',
+        'secondary': '#1e1e1e',
+        'blureffect': '#ffffff11',
+        'textcolor': '#7b7c7d',
       },
     },
   },

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { useSelector } from "react-redux";
-import { storage } from "../firebase/config";
+import { storage } from "../../firebase/config";
 import { ref, uploadBytes } from "firebase/storage";
 
 const UploadBtn = () => {
@@ -34,18 +34,18 @@ const UploadBtn = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center w-max  gap-3">
+      <div className="flex justify-center items-center w-max gap-3 p-3 rounded-lg shadow-2xl z-50 bg-secondary absolute bottom-8 right-8">
         <input
           ref={browseRef}
           type="file"
-          className="cursor-pointer bg-secondary text-gray-200 shadow-md p-2 rounded-md"
+          className="custom-file-input font-lato cursor-pointer text-sm text-gray-200 rounded-lg"
         />
         <div
           onClick={uploadImage}
-          className="flex justify-start items-center w-max gap-2 bg-blue-600 py-3 px-6 rounded-md text-white shadow-md cursor-pointer"
+          className="flex justify-start items-center w-max gap-2 bg-blue-700 py-[0.4rem] px-6 rounded-lg text-white shadow-md cursor-pointer"
         >
-          <BiSolidCloudUpload className="text-2xl" />
-          <span>Upload Images</span>
+          <BiSolidCloudUpload className="text-xl" />
+          <span className="text-sm font-lato">Upload Images</span>
         </div>
       </div>
       <p className="text-red-400">{errorMsg}</p>

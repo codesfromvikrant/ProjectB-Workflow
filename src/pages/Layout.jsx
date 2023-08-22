@@ -89,12 +89,13 @@ const Layout = () => {
 
   useEffect(() => {
     const user_data = JSON.parse(sessionStorage.getItem("user_data"));
-    console.log("layout");
+
     if (!loggedIn && user_data) {
       dispatch(setLoggedIn(true));
       return;
     }
     if (user_data) {
+      console.log("layout");
       dispatch(setLoggedIn(true));
       getCreateData(user_data);
     }
