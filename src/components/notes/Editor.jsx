@@ -7,7 +7,7 @@ import { FaTrash } from "react-icons/fa";
 import { MdPublish } from "react-icons/md";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { openAddTagDialog } from "../../features/notesSlice";
+import { openAddTagDialog, addInTagsSelected } from "../../features/notesSlice";
 import {
   collection,
   doc,
@@ -107,6 +107,8 @@ const Editor = () => {
           title: note.title,
           content: note.content,
         }));
+        note.tags &&
+          note.tags.forEach((tag) => dispatch(addInTagsSelected(tag)));
       }
     })();
   }, [uid]);

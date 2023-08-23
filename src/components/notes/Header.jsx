@@ -3,6 +3,7 @@ import { BiSolidAddToQueue } from "react-icons/bi";
 import { HiDocument } from "react-icons/hi";
 import { FaTrash } from "react-icons/fa";
 import { ImPriceTags } from "react-icons/im";
+import { ImPushpin } from "react-icons/im";
 import SearchBar from "../SearchBar";
 import FilterByTags from "../dialog/FilterByTags";
 import { nanoid } from "nanoid";
@@ -68,6 +69,13 @@ const Header = () => {
         </button>
         {filter_dialog && <FilterByTags />}
       </div>
+      <button
+        onClick={() => dispatch(openFilterDialog())}
+        className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-semibold text-textcolor"
+      >
+        <span className="tracking-wide w-max">Filter By Pin</span>
+        <ImPushpin className="text-xl" />
+      </button>
       <SearchBar />
     </div>
   );

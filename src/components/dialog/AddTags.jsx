@@ -12,6 +12,7 @@ import { db } from "../../firebase/config";
 const AddTags = () => {
   const [value, setValue] = useState("");
   const [mssg, setMssg] = useState("");
+  const [tags, setTags] = useState([]);
   const { nid } = useParams();
   const uid = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const AddTags = () => {
 
   return (
     <div className="h-max w-[12rem] z-50 mt-3 bg-blureffect backdrop-blur-md p-2 rounded-md absolute">
-      <TagsList />
+      <TagsList tags={tags} setTags={setTags} />
       <div className="">
         <input
           type="text"

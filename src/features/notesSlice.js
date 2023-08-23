@@ -23,12 +23,14 @@ export const notesSlice = createSlice({
     setFilteredTags: (state, action) => {
       state.filtered_tags = action.payload;
     },
+
     openFilterDialog: (state) => {
       state.filter_dialog = !state.filter_dialog;
     },
     openAddTagDialog: (state) => {
       state.addtag_dialog = !state.addtag_dialog;
     },
+
     addInTagsAvailable: (state, action) => {
       state.filtered_tags.push(action.payload);
     },

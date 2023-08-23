@@ -9,6 +9,7 @@ const TagsList = () => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const tagsAvailable = useSelector((state) => state.notes.filtered_tags);
+  const tagsSelected = useSelector((state) => state.notes.tags_selected);
 
   useEffect(() => {
     if (!uid) return;
@@ -29,11 +30,16 @@ const TagsList = () => {
   const tagsList =
     tagsAvailable &&
     tagsAvailable.map((tag) => {
+      const style = {
+        color: tagsSelected.includes(tag) ? "#3b82f6" : "#e5e7eb",
+      };
+      console.log(style);
       return (
         <div
           key={tag}
           onClick={() => dispatch(addInTagsSelected(tag))}
-          className="flex justify-between items-center text-gray-400 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:text-blue-600 cursor-pointer"
+          style={style}
+          className="flex justify-between items-center  transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:text-blue-600 cursor-pointer"
         >
           <span className="text-sm font-semibold capitalize tracking-wider">
             {tag}

@@ -29,7 +29,7 @@ const SideBar = () => {
             <Link to="/userdash/notes">
               <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
                 <IoDocumentSharp className="text-xl text-gray-200" />
-                <p>All Notes</p>
+                <p>Notes & Docs</p>
               </li>
             </Link>
             <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">

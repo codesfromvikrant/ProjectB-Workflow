@@ -9,6 +9,7 @@ export default {
         'secondary': '#1e1e1e',
         'blureffect': '#ffffff11',
         'textcolor': '#7b7c7d',
+        'bgblack': '#00000043',
       },
     },
   },

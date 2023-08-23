@@ -3,7 +3,7 @@ import UploadBtn from "../components/gallery/UploadBtn";
 import SearchBar from "../components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { storage } from "../firebase/config";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 import { setGallery, addToGallery } from "../features/gallerySlice";
 import ImagesGrid from "../components/gallery/ImagesGrid";
 
@@ -16,10 +16,20 @@ const Gallery = () => {
     try {
       const listRef = ref(storage, filePath);
       const res = await listAll(listRef);
+
       const images_data = res.items.map(async (item) => {
         try {
           const url = await getDownloadURL(item);
-          return url;
+          const metaRef = ref(storage, item.fullPath);
+          const metadata = await getMetadata(metaRef);
+          const data = {
+            url,
+            name: metadata.name,
+            size: metadata.size,
+            type: metadata.contentType,
+            timeCreated: metadata.timeCreated,
+          };
+          return data;
         } catch (error) {
           console.error(error.code, error.message);
         }
