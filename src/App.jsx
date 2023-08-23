@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import Protected from "./Protected";
 import Gallery from "./pages/Gallery";
 import Layout from "./pages/Layout";
