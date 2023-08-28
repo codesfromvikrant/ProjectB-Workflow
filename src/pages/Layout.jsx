@@ -3,12 +3,13 @@ import { Outlet } from "react-router-dom";
 import { auth, db } from "../firebase/config";
 import {
   signInWithPopup,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
   GithubAuthProvider,
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { createDoc } from "../utils/firestoreUtils";
+import { createDocInUsers, createDocInProjects } from "../utils/firestoreUtils";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuth, setLoggedIn } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -18,11 +19,19 @@ const Layout = () => {
   const loggedIn = useSelector((state) => state.auth.logged_in);
   const navigate = useNavigate();
 
+  const emailAuth = async (email, password) => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      authStateChange();
+    } catch (error) {
+      console.error(error.code, error.message);
+    }
+  };
+
   const googleprovider = new GoogleAuthProvider();
   const googleAuth = async () => {
     try {
       const result = await signInWithPopup(auth, googleprovider);
-      dispatch(setLoggedIn(true));
       authStateChange();
     } catch (error) {
       console.error(error.code, error.message);
@@ -49,7 +58,7 @@ const Layout = () => {
         };
         sessionStorage.setItem("user_data", JSON.stringify(data));
         dispatch(setLoggedIn(true));
-        navigate("/userdash");
+        navigate("user/explore");
       } else {
         dispatch(setLoggedIn(false));
         console.log("User is signed out");
@@ -69,7 +78,7 @@ const Layout = () => {
         })
       );
     } else {
-      createDoc(
+      createDocInUsers(
         {
           uid: user.uid,
           email_id: user.email_id,
@@ -77,6 +86,16 @@ const Layout = () => {
         },
         user.uid
       );
+
+      createDocInProjects(
+        {
+          ongoing: [],
+          completed: [],
+          trash: [],
+        },
+        user.uid
+      );
+
       dispatch(
         setAuth({
           uid: user.uid,
@@ -95,7 +114,6 @@ const Layout = () => {
       return;
     }
     if (user_data) {
-      console.log("layout");
       dispatch(setLoggedIn(true));
       getCreateData(user_data);
     }
@@ -103,7 +121,7 @@ const Layout = () => {
 
   return (
     <div>
-      <Outlet context={[googleAuth, gitAuth]} />
+      <Outlet context={[googleAuth, gitAuth, emailAuth]} />
     </div>
   );
 };

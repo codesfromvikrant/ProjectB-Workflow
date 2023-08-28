@@ -1,18 +1,19 @@
 import React from "react";
-import Logo from "../assets/cloud_logo.png";
+import Logo from "../assets/icons/cloud_logo.png";
 import UserIntro from "./UserIntro";
-import { Link } from "react-router-dom";
-import { GrGallery } from "react-icons/gr";
-import { AiFillSetting } from "react-icons/ai";
-import { BiSolidLogInCircle } from "react-icons/bi";
-import { IoDocumentSharp } from "react-icons/io5";
-import { FaTasks } from "react-icons/fa";
-import { BiSolidHelpCircle } from "react-icons/bi";
-import { SiCompilerexplorer } from "react-icons/si";
+import { NavLink } from "react-router-dom";
+import exploreIcon from "../assets/icons/explore.png";
+import projectIcon from "../assets/icons/project_lab.png";
+import notesIcon from "../assets/icons/notes.png";
+import galleryIcon from "../assets/icons/gallery.png";
+import notificationIcon from "../assets/icons/notifications.png";
+import settingsIcon from "../assets/icons/settings.png";
+import supportIcon from "../assets/icons/support.png";
+import logoutIcon from "../assets/icons/log_out.png";
 
 const SideBar = () => {
   return (
-    <div className="flex justify-between items-start flex-col w-[15rem] h-[100vh] overflow-y-auto bg-secondary px-4 py-8">
+    <div className="flex justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto bg-secondary px-4 py-8">
       <div className="flex justify-start items-start gap-6 flex-col">
         <div className="flex justify-center items-center gap-2 mx-auto">
           <img src={Logo} className="w-12" alt="mediaharbor-logo" />
@@ -22,35 +23,107 @@ const SideBar = () => {
         </div>
         <nav className="w-full">
           <ul className="w-full">
-            <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              <SiCompilerexplorer className="text-xl text-gray-200" />
-              <p>Explore</p>
+            <NavLink
+              to="/user/explore"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#2564eb68" : "",
+                  color: isActive ? "#fff" : "",
+                  border: isActive ? "2px solid #2563eb" : "",
+                  padding: isActive ? "0.5rem" : "",
+                  margin: isActive ? "0.3rem 0" : "",
+                };
+              }}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+            >
+              {/* <SiCompilerexplorer className="text-xl text-gray-200" /> */}
+              <img src={exploreIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Explore</p>
+            </NavLink>
+
+            <NavLink
+              to="/user/projects"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#2564eb68" : "",
+                  color: isActive ? "#fff" : "",
+                  border: isActive ? "2px solid #2563eb" : "",
+                  padding: isActive ? "0.5rem" : "",
+                  margin: isActive ? "0.3rem 0" : "",
+                };
+              }}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+            >
+              {/* <FaTasks className="text-xl text-gray-200" /> */}
+              <img src={projectIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Projects Lab</p>
+            </NavLink>
+
+            <NavLink
+              to="/user/notes"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#2564eb68" : "",
+                  color: isActive ? "#fff" : "",
+                  border: isActive ? "2px solid #2563eb" : "",
+                  padding: isActive ? "0.5rem" : "",
+                  margin: isActive ? "0.3rem 0" : "",
+                };
+              }}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+            >
+              {/* <IoDocumentSharp className="text-xl text-gray-200" /> */}
+              <img src={notesIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Notes & Docs</p>
+            </NavLink>
+
+            <NavLink
+              to="/user/gallery"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#2564eb68" : "",
+                  color: isActive ? "#fff" : "",
+                  border: isActive ? "2px solid #2563eb" : "",
+                  padding: isActive ? "0.5rem" : "",
+                  margin: isActive ? "0.3rem 0" : "",
+                };
+              }}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+            >
+              {/* <GrGallery className="text-xl bg-gray-200" /> */}
+              <img src={galleryIcon} className="w-7" />
+              <p className="font-medium tracking-wide">My Gallery</p>
+            </NavLink>
+            <NavLink
+              to="/user/notification"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#2564eb68" : "",
+                  color: isActive ? "#fff" : "",
+                  border: isActive ? "2px solid #2563eb" : "",
+                  padding: isActive ? "0.5rem" : "",
+                  margin: isActive ? "0.3rem 0" : "",
+                };
+              }}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+            >
+              <img src={notificationIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Notifications</p>
+            </NavLink>
+            <NavLink className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
+              {/* <AiFillSetting className="text-xl text-gray-200" /> */}
+              <img src={settingsIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Settings</p>
+            </NavLink>
+            <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
+              {/* <BiSolidHelpCircle className="text-xl text-gray-200" /> */}
+              <img src={supportIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Need Help</p>
             </li>
-            <Link to="/userdash/notes">
-              <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-                <IoDocumentSharp className="text-xl text-gray-200" />
-                <p>Notes & Docs</p>
-              </li>
-            </Link>
-            <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              <FaTasks className="text-xl text-gray-200" />
-              <p>Manage Tasks</p>
-            </li>
-            <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg  hover:px-2  hover:bg-blue-600 cursor-pointer">
-              <GrGallery className="text-xl bg-gray-200" />
-              <p>My Gallery</p>
-            </li>
-            <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              <AiFillSetting className="text-xl text-gray-200" />
-              <p>Settings</p>
-            </li>
-            <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              <BiSolidHelpCircle className="text-xl text-gray-200" />
-              <p>Need Help</p>
-            </li>
-            <li className="flex justify-start items-center gap-2 text-gray-400 hover:text-gray-200 transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              <BiSolidLogInCircle className="text-2xl text-gray-200" />
-              <a href="#">LogOut</a>
+            <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
+              {/* <BiSolidLogInCircle className="text-2xl text-gray-200" /> */}
+              <img src={logoutIcon} className="w-7" />
+              <p className="font-medium tracking-wide">LogOut</p>
             </li>
           </ul>
         </nav>

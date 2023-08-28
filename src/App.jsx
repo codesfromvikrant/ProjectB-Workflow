@@ -7,6 +7,9 @@ import Gallery from "./pages/Gallery";
 import Layout from "./pages/Layout";
 import Notes from "./pages/Notes";
 import NotesCRUD from "./pages/NotesCRUD";
+import Explore from "./pages/Explore";
+import ProjectHome from "./components/projects/ProjectHome";
+import NoPage from "./pages/NoPage";
 
 const App = () => {
   return (
@@ -17,18 +20,23 @@ const App = () => {
             <Route index element={<Home />} />
 
             <Route
-              path="/userdash"
+              path="/user"
               element={
                 <Protected>
                   <Dashboard />
                 </Protected>
               }
             >
-              <Route path="" element={<Gallery />} />
+              <Route index element={<NoPage />} />
+              <Route path="*" element={<NoPage />} />
+              <Route path="explore" element={<Explore />} />
+              <Route path="projects" element={<ProjectHome />} />
+              <Route path="gallery" element={<Gallery />} />
               <Route path="notes" element={<Notes />} />
               <Route path="notes/:nid" element={<NotesCRUD />} />
             </Route>
           </Route>
+          <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>
     </>

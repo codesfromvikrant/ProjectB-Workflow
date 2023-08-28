@@ -14,14 +14,10 @@ const TagsList = () => {
   useEffect(() => {
     if (!uid) return;
     async function getTagsAvailable() {
-      try {
-        const docRef = doc(db, "users", uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.data().tags_available) {
-          dispatch(setFilteredTags(docSnap.data().tags_available));
-        }
-      } catch (error) {
-        console.error(error.code, error.message);
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.data().tags_available) {
+        dispatch(setFilteredTags(docSnap.data().tags_available));
       }
     }
     getTagsAvailable();
@@ -33,7 +29,6 @@ const TagsList = () => {
       const style = {
         color: tagsSelected.includes(tag) ? "#3b82f6" : "#e5e7eb",
       };
-      console.log(style);
       return (
         <div
           key={tag}

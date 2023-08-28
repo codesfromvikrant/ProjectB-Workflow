@@ -4,6 +4,8 @@ import { nanoid } from "nanoid";
 import { IoMdCloudDownload } from "react-icons/io";
 import { storage } from "../../firebase/config";
 import { ref } from "firebase/storage";
+import Menu from "../Menu";
+import ImageDialog from "../dialog/ImageDialog";
 
 const option = {
   weekday: "long",
@@ -24,6 +26,19 @@ const ImagesGrid = () => {
     xhr.send();
   };
 
+  const viewDetails = (id) => {
+    const details = document.getElementById(id);
+    details.classList.remove("hidden");
+  };
+  const hideDetails = (id) => {
+    const details = document.getElementById(id);
+    details.classList.add("hidden");
+  };
+  const showDialog = (id) => {
+    const dialog = document.getElementById(id);
+    dialog.classList.toggle("hidden");
+  };
+
   const renderImages = images.map((obj) => {
     const style = {
       background: `url(${obj.url})`,
@@ -36,14 +51,33 @@ const ImagesGrid = () => {
     const formattedTime = date.toLocaleTimeString("en-US");
     const httpsReference = ref(storage, obj.url);
 
+    const nanoId = nanoid();
     return (
       <div
-        key={nanoid()}
+        key={nanoId}
+        onMouseOver={() => {
+          viewDetails(`details-${nanoId}`);
+        }}
+        onMouseLeave={() => {
+          hideDetails(`details-${nanoId}`);
+        }}
         style={style}
-        className="flex justify-end items-end h-[18rem] rounded-md cursor-pointer shadow-md w-full"
+        className="flex justify-end items-end h-[18rem] relative rounded-md cursor-pointer shadow-md w-full"
       >
-        <div className="bg-bgblack  backdrop-blur-md w-full p-2 rounded-b-md">
-          <p className="text-gray-300 text-sm font-semibold break-words">
+        <div
+          onClick={() => {
+            showDialog(`dialog-${nanoId}`);
+          }}
+          className=""
+        >
+          <Menu />
+        </div>
+        <ImageDialog id={nanoId} />
+        <div
+          id={`details-${nanoId}`}
+          className="hidden bg-bgblack transition-all duration-500 backdrop-blur-md w-full p-2 rounded-b-md"
+        >
+          <p className="text-gray-300 text-xs font-semibold break-words">
             {obj.name}
           </p>
           <p className="text-gray-300 my-1 text-xs font-medium break-words">
@@ -57,12 +91,11 @@ const ImagesGrid = () => {
           </p>
           <div
             onClick={() => downloadImage(obj.url)}
-            className="flex justify-center items-center gap-2 p-2 rounded mt-2 bg-blue-700"
+            className="flex justify-center items-center gap-2 p-2 rounded mt-2 bg-blureffect shadow transition-all duration-500 hover:bg-blue-700"
           >
             <span className="text-gray-300 text-xs font-semibold tracking-wide">
-              Download{" "}
+              View Image
             </span>
-            <IoMdCloudDownload className="text-gray-300" />
           </div>
         </div>
       </div>

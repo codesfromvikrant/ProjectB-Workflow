@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setAllNotes, setFilteredNotes } from "../features/notesSlice";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
+import Pagination from "../components/notes/Pagination";
 
 const Notes = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const Notes = () => {
     <div className="py-5 px-20 w-full h-[100vh] overflow-y-auto">
       <Header />
       <Collection />
+      <Pagination />
     </div>
   );
 };

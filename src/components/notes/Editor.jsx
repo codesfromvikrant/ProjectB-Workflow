@@ -67,12 +67,21 @@ const Editor = () => {
     content: "",
     last_update: todayDate,
   });
+  const [tagsSelected, setTagsSelected] = useState([]);
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const availableTags = useSelector((state) => state.notes.filtered_tags);
   const selectedTags = useSelector((state) => state.notes.tags_selected);
   const addTagDialog = useSelector((state) => state.notes.addtag_dialog);
   const navigate = useNavigate();
+
+  const addTagsSelected = (tag) => {
+    if (tagsSelected.includes(tag)) {
+      setTagsSelected((prev) => prev.filter((prevTag) => prevTag !== tag));
+      return;
+    }
+    setTagsSelected((prev) => [...prev, tag]);
+  };
 
   const handleContentChange = (value) => {
     setData((prev) => ({ ...prev, content: value }));
@@ -107,8 +116,7 @@ const Editor = () => {
           title: note.title,
           content: note.content,
         }));
-        note.tags &&
-          note.tags.forEach((tag) => dispatch(addInTagsSelected(tag)));
+        note.tags && setTagsSelected(note.tags);
       }
     })();
   }, [uid]);
@@ -119,16 +127,8 @@ const Editor = () => {
       const user_data = await get_data();
       if (!user_data) return;
       const notes_data = user_data.notes_data ? user_data.notes_data : [];
-      const tags_available = user_data.tags_available
-        ? user_data.tags_available
-        : [];
-
-      availableTags.forEach((tag) => {
-        if (!tags_available.includes(tag)) {
-          updateDoc(doc(colRef, uid), {
-            tags_available: arrayUnion(tag),
-          });
-        }
+      updateDoc(doc(colRef, uid), {
+        tags_available: availableTags,
       });
 
       let notePresent = false;
@@ -138,7 +138,7 @@ const Editor = () => {
           note.title = data.title;
           note.content = data.content;
           note.last_update = todayDate;
-          note.tags = selectedTags;
+          note.tags = tagsSelected;
           return note;
         }
         return note;
@@ -210,7 +210,12 @@ const Editor = () => {
               </span>
               <ImPriceTags />
             </button>
-            {addTagDialog && <AddTags />}
+            {addTagDialog && (
+              <AddTags
+                tagsSelected={tagsSelected}
+                addTagsSelected={addTagsSelected}
+              />
+            )}
           </div>
           <button
             onClick={delete_data}

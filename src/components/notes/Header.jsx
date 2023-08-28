@@ -35,26 +35,26 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-start items-center gap-3">
+    <div className="flex justify-start items-center gap-3 text-slate-400">
       <button
         onClick={addNote}
-        className="flex justify-start items-center gap-2 shadow-md bg-blue-700 py-3 px-5 rounded-md w-max text-gray-200"
+        className="flex justify-start items-center gap-2 shadow-md bg-glassyblue border-2 border-blue-600 hover:bg-blue-600 py-3 px-5 rounded-md w-max text-gray-200"
       >
-        <span className="w-max tracking-wide text-sm font-semibold font-lato">
+        <span className="w-max tracking-wide text-sm font-medium">
           Add New Note
         </span>
         <BiSolidAddToQueue className="text-xl" />
       </button>
       <button
         onClick={viewAllNotes}
-        className="flex justify-start items-center gap-1 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-semibold text-textcolor"
+        className="flex justify-start items-center gap-1 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-medium"
       >
         <span className="tracking-wide">All</span>
         <HiDocument className="text-xl" />
       </button>
       <button
         onClick={() => filtering("trash", true)}
-        className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-semibold text-textcolor"
+        className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-medium"
       >
         <span className="tracking-wide">Trash</span>
         <FaTrash className="text-base " />
@@ -62,17 +62,14 @@ const Header = () => {
       <div className="relative">
         <button
           onClick={() => dispatch(openFilterDialog())}
-          className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-semibold text-textcolor"
+          className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-medium"
         >
           <span className="tracking-wide w-max">Filter By Tags</span>
           <ImPriceTags className="text-xl " />
         </button>
         {filter_dialog && <FilterByTags />}
       </div>
-      <button
-        onClick={() => dispatch(openFilterDialog())}
-        className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-semibold text-textcolor"
-      >
+      <button className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-medium">
         <span className="tracking-wide w-max">Filter By Pin</span>
         <ImPushpin className="text-xl" />
       </button>

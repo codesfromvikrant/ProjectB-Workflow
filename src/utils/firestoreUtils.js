@@ -2,30 +2,20 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 // Add a new document in collection "cities"
-const createDoc = async (data, id) => {
+const createDocInUsers = async (data, id) => {
   try {
     const docRef = await setDoc(doc(db, "users", id), data);
-    console.log("Document written with ID: ", docRef.id);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
-// Read document
-const readDoc = async (id) => {
+const createDocInProjects = async (data, id) => {
   try {
-    const docRef = doc(db, "users", id);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      return docSnap.data();
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
+    const docRef = await setDoc(doc(db, "projects", id), data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
-export { createDoc, readDoc };
+export { createDocInUsers, createDocInProjects };

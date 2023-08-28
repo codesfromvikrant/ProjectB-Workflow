@@ -47,7 +47,7 @@ const Gallery = () => {
   }, [uid]);
 
   return (
-    <div className="relative py-2 px-20 w-full h-[100vh] overflow-y-auto">
+    <div className="py-2 px-20 w-full h-[100vh] overflow-y-auto">
       <UploadBtn />
       <div className="my-4">
         <SearchBar />

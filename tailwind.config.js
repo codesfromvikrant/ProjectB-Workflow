@@ -6,10 +6,11 @@ export default {
     extend: {
       colors: {
         'primary': '#101011',
-        'secondary': '#1e1e1e',
+        'secondary': '#19181b',
         'blureffect': '#ffffff11',
         'textcolor': '#7b7c7d',
         'bgblack': '#00000043',
+        'glassyblue': '#2564eb68',
       },
     },
   },
