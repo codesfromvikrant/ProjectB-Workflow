@@ -48,6 +48,8 @@
   --linear-black: #00000043;
 
   --glassyblue: #2564eb68;
+  --glassyred: #dc262662;
+  --blue-600: #2563eb;
 
   --primary: #161616;
   --linear: #101011;
@@ -59,6 +61,7 @@
 body {
   font-family: 'Gilroy', sans-serif;
   background-color: var(--linear);
+  overflow-x: hidden;
 }
 
 .font-Inter {
@@ -66,15 +69,15 @@ body {
 }
 
 /* Scrollbar styles */
-.projects::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0.3em;
 }
 
-.projects::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: var(--glassyblue);
 }
 
-.projects::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #2563eb;
   border-radius: 1rem;
 }

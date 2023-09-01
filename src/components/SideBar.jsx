@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/icons/cloud_logo.png";
+import Logo from "../assets/icons/workflow.png";
 import UserIntro from "./UserIntro";
 import { NavLink } from "react-router-dom";
 import exploreIcon from "../assets/icons/explore.png";
@@ -10,15 +10,16 @@ import notificationIcon from "../assets/icons/notifications.png";
 import settingsIcon from "../assets/icons/settings.png";
 import supportIcon from "../assets/icons/support.png";
 import logoutIcon from "../assets/icons/log_out.png";
+import LinkedinIcon from "../assets/icons/linkedin.png";
 
 const SideBar = () => {
   return (
-    <div className="flex justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto bg-secondary px-4 py-8">
+    <div className="flex justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8">
       <div className="flex justify-start items-start gap-6 flex-col">
         <div className="flex justify-center items-center gap-2 mx-auto">
           <img src={Logo} className="w-12" alt="mediaharbor-logo" />
-          <p className="text-lg tracking-wider font-bold text-center w-max text-gray-200">
-            MediaHarbor
+          <p className="text-lg tracking-wide uppercase font-black text-center w-max text-gray-200">
+            WorkFLow
           </p>
         </div>
         <nav className="w-full">
@@ -36,9 +37,8 @@ const SideBar = () => {
               }}
               className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
             >
-              {/* <SiCompilerexplorer className="text-xl text-gray-200" /> */}
               <img src={exploreIcon} className="w-7" />
-              <p className="font-medium tracking-wide">Explore</p>
+              <p className="font-medium text-base tracking-wide">Explore</p>
             </NavLink>
 
             <NavLink
@@ -54,7 +54,6 @@ const SideBar = () => {
               }}
               className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
             >
-              {/* <FaTasks className="text-xl text-gray-200" /> */}
               <img src={projectIcon} className="w-7" />
               <p className="font-medium tracking-wide">Projects Lab</p>
             </NavLink>
@@ -72,7 +71,6 @@ const SideBar = () => {
               }}
               className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
             >
-              {/* <IoDocumentSharp className="text-xl text-gray-200" /> */}
               <img src={notesIcon} className="w-7" />
               <p className="font-medium tracking-wide">Notes & Docs</p>
             </NavLink>
@@ -90,11 +88,10 @@ const SideBar = () => {
               }}
               className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
             >
-              {/* <GrGallery className="text-xl bg-gray-200" /> */}
               <img src={galleryIcon} className="w-7" />
               <p className="font-medium tracking-wide">My Gallery</p>
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/user/notification"
               style={({ isActive }) => {
                 return {
@@ -109,19 +106,16 @@ const SideBar = () => {
             >
               <img src={notificationIcon} className="w-7" />
               <p className="font-medium tracking-wide">Notifications</p>
-            </NavLink>
+            </NavLink> */}
             <NavLink className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              {/* <AiFillSetting className="text-xl text-gray-200" /> */}
-              <img src={settingsIcon} className="w-7" />
-              <p className="font-medium tracking-wide">Settings</p>
+              {/* <img src={settingsIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Settings</p> */}
             </NavLink>
             <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              {/* <BiSolidHelpCircle className="text-xl text-gray-200" /> */}
               <img src={supportIcon} className="w-7" />
               <p className="font-medium tracking-wide">Need Help</p>
             </li>
             <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              {/* <BiSolidLogInCircle className="text-2xl text-gray-200" /> */}
               <img src={logoutIcon} className="w-7" />
               <p className="font-medium tracking-wide">LogOut</p>
             </li>
@@ -133,19 +127,22 @@ const SideBar = () => {
           <div className="flex justify-between items-center w-full">
             <p className="text-sm font-medium"> Vikrant Kumar</p>
             <div className="flex justify-start items-center gap-3">
-              <i
+              {/* <i className="fa-brands fa-linkedin cursor-pointer"></i> */}
+              <img
                 onClick={() => {
                   window.open(
                     "https://www.linkedin.com/in/vikrant-kumar-1b1b3b1b5/"
                   );
                 }}
-                className="fa-brands fa-linkedin cursor-pointer"
-              ></i>
+                src={LinkedinIcon}
+                className="w-7"
+              />
+
               <i
                 onClick={() => {
                   window.open("https://github.com/codesfromvikrant");
                 }}
-                className="fa-brands fa-github cursor-pointer"
+                className="fa-brands fa-github text-xl cursor-pointer"
               ></i>
             </div>
           </div>

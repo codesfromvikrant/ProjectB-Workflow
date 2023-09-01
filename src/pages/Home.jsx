@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Logo from "../assets/icons/cloud_logo.png";
+import Logo from "../assets/icons/workflow.png";
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { useOutletContext } from "react-router";
@@ -18,8 +18,8 @@ export default function Home() {
         <div className="w-2/3">
           <div className="flex justify-start items-center gap-2 mx-auto mb-4">
             <img src={Logo} className="w-12" alt="mediaharbor-logo" />
-            <p className="text-xl font-black text-center w-max text-slate-300">
-              MediaHarbor
+            <p className="text-xl font-black text-center uppercase w-max text-slate-300">
+              WorkFlow
             </p>
           </div>
 

@@ -19,9 +19,8 @@ const Pagination = () => {
   };
 
   const notesPerPage = 10;
-  const totalPages = Math.ceil(filteredNotes.length / notesPerPage);
+  const totalPages = Math.ceil(filteredNotes.length / notesPerPage) || 1;
   const btnCount = 4;
-  console.log(totalPages);
 
   useEffect(() => {
     setStart(page);

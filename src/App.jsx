@@ -10,6 +10,8 @@ import NotesCRUD from "./pages/NotesCRUD";
 import Explore from "./pages/Explore";
 import ProjectHome from "./components/projects/ProjectHome";
 import NoPage from "./pages/NoPage";
+import TaskManager from "./components/projects/TaskManager";
+import ProjectsLab from "./pages/ProjectsLab";
 
 const App = () => {
   return (
@@ -18,7 +20,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-
             <Route
               path="/user"
               element={
@@ -30,7 +31,10 @@ const App = () => {
               <Route index element={<NoPage />} />
               <Route path="*" element={<NoPage />} />
               <Route path="explore" element={<Explore />} />
-              <Route path="projects" element={<ProjectHome />} />
+              <Route path="projects" element={<ProjectsLab />}>
+                <Route index element={<ProjectHome />} />
+                <Route path="tasks" element={<TaskManager />} />
+              </Route>
               <Route path="gallery" element={<Gallery />} />
               <Route path="notes" element={<Notes />} />
               <Route path="notes/:nid" element={<NotesCRUD />} />

@@ -23,16 +23,17 @@ export const notesSlice = createSlice({
     setFilteredTags: (state, action) => {
       state.filtered_tags = action.payload;
     },
-
+    addInTagsAvailable: (state, action) => {
+      state.filtered_tags.push(action.payload);
+    },
     openFilterDialog: (state) => {
       state.filter_dialog = !state.filter_dialog;
     },
     openAddTagDialog: (state) => {
       state.addtag_dialog = !state.addtag_dialog;
     },
-
-    addInTagsAvailable: (state, action) => {
-      state.filtered_tags.push(action.payload);
+    setTagsSelected: (state, action) => {
+      state.tags_selected = action.payload;
     },
     addInTagsSelected: (state, action) => {
       state.tags_selected.push(action.payload);
@@ -47,6 +48,7 @@ export const {
   openFilterDialog,
   openAddTagDialog,
   addInTagsAvailable,
+  setTagsSelected,
   addInTagsSelected,
 } = notesSlice.actions;
 

@@ -21,17 +21,17 @@ const UserIntro = () => {
 
   return (
     <div>
-      <p className="text-gray-300 text-sm tracking-wider font-bold">
+      <p className="text-gray-300 text-sm tracking-wider font-medium">
         Good {timeContext(hours)},
       </p>
       <div className=" text-gray-400 font-light min-w-max text-xs tracking-wider">
         {todayDate}
       </div>
       <div className="text-gray-600 font-bold min-w-max flex justify-start items-center pt-2 mt-4 border-t-[1px] border-blureffect gap-2">
-        <div className="bg-blue-700 text-gray-300 text-xl font-semibold w-8 h-8 rounded-full flex justify-center items-center">
+        <div className="bg-glassyblue border-2 border-blue-600 text-gray-300 text-lg font-semibold w-8 h-8 rounded-full flex justify-center items-center">
           {user.username.charAt(0)}
         </div>
-        <p className="text-gray-200 font-bold">{user.username}</p>
+        <p className="text-gray-200 font-medium">{user.username}</p>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ export default {
         'textcolor': '#7b7c7d',
         'bgblack': '#00000043',
         'glassyblue': '#2564eb68',
+        'glassyred': '#dc262662',
       },
     },
   },

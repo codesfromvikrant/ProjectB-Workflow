@@ -3,11 +3,19 @@ import { FaCheck } from "react-icons/fa";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilteredTags, addInTagsSelected } from "../../features/notesSlice";
+import {
+  setFilteredNotes,
+  setFilteredTags,
+  setTagsSelected,
+  addInTagsSelected,
+} from "../../features/notesSlice";
+import { useSearchParams } from "react-router-dom";
 
-const TagsList = () => {
+const Filtering = () => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
+  const all_notes = useSelector((state) => state.notes.all_notes);
+  const filtered_notes = useSelector((state) => state.notes.filtered_notes);
   const tagsAvailable = useSelector((state) => state.notes.filtered_tags);
   const tagsSelected = useSelector((state) => state.notes.tags_selected);
 
@@ -23,6 +31,24 @@ const TagsList = () => {
     getTagsAvailable();
   }, [uid]);
 
+  useEffect(() => {
+    if (!filtered_notes) return;
+    let update = all_notes;
+    tagsSelected.forEach((tag) => {
+      update = update.filter((note) => note.tags && note.tags.includes(tag));
+    });
+    dispatch(setFilteredNotes(update));
+  }, [tagsSelected]);
+
+  const filteredTagSelected = (tag) => {
+    if (tagsSelected.includes(tag)) {
+      const update = tagsSelected.filter((item) => item !== tag);
+      dispatch(setTagsSelected(update));
+    } else {
+      dispatch(addInTagsSelected(tag));
+    }
+  };
+
   const tagsList =
     tagsAvailable &&
     tagsAvailable.map((tag) => {
@@ -32,7 +58,9 @@ const TagsList = () => {
       return (
         <div
           key={tag}
-          onClick={() => dispatch(addInTagsSelected(tag))}
+          onClick={() => {
+            filteredTagSelected(tag);
+          }}
           style={style}
           className="flex justify-between items-center  transition-all duration-500 py-2 w-full rounded-lg hover:px-2  hover:text-blue-600 cursor-pointer"
         >
@@ -49,4 +77,4 @@ const TagsList = () => {
   );
 };
 
-export default TagsList;
+export default Filtering;

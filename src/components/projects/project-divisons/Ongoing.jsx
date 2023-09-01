@@ -3,6 +3,7 @@ import { BiSolidAddToQueue } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { db } from "../../../firebase/config";
 import { doc, getDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setOngoing } from "../../../features/projectsSlice";
 import OngoingIcon from "../../../assets/icons/ongoing.png";
@@ -10,6 +11,7 @@ import Menu from "../../Menu";
 import OngoingDropdown from "../dropdowns/OngoingDropdown";
 
 const Ongoing = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const ongoingProjects = useSelector((state) => state.projects.ongoing);
@@ -29,6 +31,14 @@ const Ongoing = () => {
 
   const showOngoingDropdown = (id) => {
     document.getElementById(id).classList.toggle("hidden");
+  };
+
+  const openProject = (id, status) => {
+    const queryParams = {
+      id: id,
+      status: status,
+    };
+    navigate(`tasks?${new URLSearchParams(queryParams)}`);
   };
 
   const projectList =
@@ -73,7 +83,10 @@ const Ongoing = () => {
             <span className="tracking-wider">Last Updated On : </span>{" "}
             {updatedDate} {updatedTime}
           </span>
-          <button className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded">
+          <button
+            onClick={() => openProject(project.id, project.status)}
+            className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded"
+          >
             <BiSolidAddToQueue className="text-lg" />
             <span className="text-xs tracking-wider font-semibold">
               Add Tasks

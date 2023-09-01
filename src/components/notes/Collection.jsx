@@ -7,6 +7,18 @@ import Menu from "../Menu";
 const Collection = () => {
   const all_notes = useSelector((state) => state.notes.all_notes);
   const filtered_notes = useSelector((state) => state.notes.filtered_notes);
+  const tags_selected = useSelector((state) => state.notes.tags_selected);
+
+  const tagsSelectedList = tags_selected.map((tag) => {
+    return (
+      <div
+        key={tag}
+        className="bg-glassyblue border-2 border-blue-600 text-gray-200 tracking-wide px-2 py-1 rounded font-semibold text-xs "
+      >
+        {tag}
+      </div>
+    );
+  });
 
   const notes =
     filtered_notes &&
@@ -26,7 +38,7 @@ const Collection = () => {
               <p className="font-semibold">{obj.last_update}</p>
             </div>
             <Link to={`./${obj.id}`}>
-              <p className="font-bold text-base hover:text-blue-700 transition-all">
+              <p className="font-medium leading-5 text-base hover:text-blue-700 transition-all">
                 {title ? title : "Untitled"}
               </p>
             </Link>
@@ -40,7 +52,17 @@ const Collection = () => {
     });
 
   return (
-    <div className="my-8">
+    <div className="my-5">
+      {tags_selected.length > 0 && (
+        <div className="flex justify-start items-center gap-2 mb-4">
+          <span className="text-gray-200 font-medium">Filtered By : </span>
+          {tagsSelectedList}
+          <button className="bg-glassyred border-2 border-red-600 text-gray-200 text-xs tracking-wide px-2 py-1 rounded font-semibold">
+            Close All
+          </button>
+        </div>
+      )}
+
       <div className="grid grid-cols-5 gap-3">{notes}</div>
     </div>
   );
