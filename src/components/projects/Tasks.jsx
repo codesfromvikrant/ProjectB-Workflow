@@ -57,7 +57,9 @@ const Tasks = () => {
           Add New Task
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-4">{tasksList.reverse()}</div>
+      <div className="grid grid-cols-3 gap-4">
+        {tasksList ? tasksList.reverse() : null}
+      </div>
     </section>
   );
 };

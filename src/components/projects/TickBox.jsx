@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { TiTick } from "react-icons/ti";
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
-const TickBox = () => {
-  const [state, setState] = useState(false);
+const TickBox = ({ todoStatus, todoID }) => {
   return (
-    <div
-      onClick={() => setState(!state)}
-      className="w-4 h-4 bg-glassyblue border-2 border-blue-600 rounded mt-1 flex justify-center items-center"
-    >
-      {state && <TiTick />}
+    <div className="w-4 h-4 bg-glassyblue border-2 border-blue-600 rounded mt-1 flex justify-center items-center">
+      {todoStatus === "completed" ? <TiTick /> : null}
     </div>
   );
 };

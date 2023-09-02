@@ -35,7 +35,13 @@ const TaskEditor = () => {
   };
   const addInToDo = () => {
     if (!todoTask) return;
-    setvalue({ ...value, todos: [...value.todos, todoTask] });
+    setvalue({
+      ...value,
+      todos: [
+        ...value.todos,
+        { id: nanoid(), todo_task: todoTask, status: "live" },
+      ],
+    });
     setTodoTask("");
   };
 

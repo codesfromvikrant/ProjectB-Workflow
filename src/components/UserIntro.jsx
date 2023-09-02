@@ -29,9 +29,11 @@ const UserIntro = () => {
       </div>
       <div className="text-gray-600 font-bold min-w-max flex justify-start items-center pt-2 mt-4 border-t-[1px] border-blureffect gap-2">
         <div className="bg-glassyblue border-2 border-blue-600 text-gray-300 text-lg font-semibold w-8 h-8 rounded-full flex justify-center items-center">
-          {user.username.charAt(0)}
+          {user.username ? user.username.charAt(0) : "T"}
         </div>
-        <p className="text-gray-200 font-medium">{user.username}</p>
+        <p className="text-gray-200 font-medium">
+          {user.username ? user.username : "Tester"}
+        </p>
       </div>
     </div>
   );
