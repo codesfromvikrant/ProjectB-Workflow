@@ -6,6 +6,7 @@ import { storage } from "../firebase/config";
 import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 import { setGallery, addToGallery } from "../features/gallerySlice";
 import ImagesGrid from "../components/gallery/ImagesGrid";
+import { doc } from "firebase/firestore";
 
 const Gallery = () => {
   const uid = useSelector((state) => state.auth.uid);
@@ -40,6 +41,10 @@ const Gallery = () => {
       console.error(error.code, error.message);
     }
   };
+
+  useEffect(() => {
+    document.title = "My Gallery | WorkFlow";
+  }, []);
 
   useEffect(() => {
     if (!uid) return;

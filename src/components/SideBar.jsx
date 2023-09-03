@@ -91,26 +91,6 @@ const SideBar = () => {
               <img src={galleryIcon} className="w-7" />
               <p className="font-medium tracking-wide">My Gallery</p>
             </NavLink>
-            {/* <NavLink
-              to="/user/notification"
-              style={({ isActive }) => {
-                return {
-                  backgroundColor: isActive ? "#2564eb68" : "",
-                  color: isActive ? "#fff" : "",
-                  border: isActive ? "2px solid #2563eb" : "",
-                  padding: isActive ? "0.5rem" : "",
-                  margin: isActive ? "0.3rem 0" : "",
-                };
-              }}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
-            >
-              <img src={notificationIcon} className="w-7" />
-              <p className="font-medium tracking-wide">Notifications</p>
-            </NavLink> */}
-            <NavLink className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
-              {/* <img src={settingsIcon} className="w-7" />
-              <p className="font-medium tracking-wide">Settings</p> */}
-            </NavLink>
             <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
               <img src={supportIcon} className="w-7" />
               <p className="font-medium tracking-wide">Need Help</p>

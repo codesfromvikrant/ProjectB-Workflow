@@ -17,6 +17,9 @@ export const tasksSlice = createSlice({
     setTaskID: (state, action) => {
       state.task_id = action.payload;
     },
+    updateTask: (state, action) => {
+      state.project_details.tasks = action.payload;
+    },
     setSubTaskID: (state, action) => {
       state.subtask_id = action.payload;
     },
@@ -26,6 +29,6 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { setProjectDetails, setTaskID, setSubTaskID, setTaskEditor } =
+export const { setProjectDetails, setTaskID, updateTask, setSubTaskID, setTaskEditor } =
   tasksSlice.actions;
 export default tasksSlice.reducer;

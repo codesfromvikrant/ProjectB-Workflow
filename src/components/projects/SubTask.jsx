@@ -7,6 +7,7 @@ import {
   setTaskEditor,
 } from "../../features/tasksSlice";
 import ToDoList from "./ToDoList";
+import Menu from "../Menu";
 
 const SubTask = ({ subtasks, task_id, index }) => {
   const dispatch = useDispatch();
@@ -16,20 +17,27 @@ const SubTask = ({ subtasks, task_id, index }) => {
       return (
         <div
           key={subtask.id}
-          className="text-gray-200 bg-secondary p-4 rounded-md"
+          className="text-gray-200 bg-secondary p-4 rounded-md relative"
         >
+          <Menu />
           <p className="font-medium mb-1">{subtask.title}</p>
           <p className="text-slate-400 text-sm tracking-wider ">
             {subtask.description}
           </p>
-          {subtask.todos && <ToDoList todos={subtask.todos} />}
+          {subtask.todos && (
+            <ToDoList
+              todos={subtask.todos}
+              task_id={task_id}
+              subtask_id={subtask.id}
+            />
+          )}
           <button
             onClick={() => {
               dispatch(setTaskEditor(true));
               dispatch(setTaskID(task_id));
               dispatch(setSubTaskID(subtask.id));
             }}
-            className="bg-bgblack w-full p-3 mt-2 tracking-wider rounded-md text-sm font-medium"
+            className="bg-primary w-full p-3 mt-2 tracking-wider rounded-md text-sm font-medium"
           >
             Add ToDo List
           </button>
@@ -49,7 +57,7 @@ const SubTask = ({ subtasks, task_id, index }) => {
           dispatch(setTaskID(task_id));
           dispatch(setSubTaskID(null));
         }}
-        className="text-gray-200 w-full text-center font-medium tracking-wider bg-glassyblue shadow-md py-3 px-6 rounded-md"
+        className="text-gray-200 w-full text-center font-medium tracking-wider bg-primary shadow-md py-3 px-6 rounded-md"
       >
         Add Sub Tasks
       </button>

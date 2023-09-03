@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FcTodoList } from "react-icons/fc";
 import { FcDocument } from "react-icons/fc";
 import { FcImageFile } from "react-icons/fc";
@@ -8,6 +8,10 @@ import ProjectBanner from "../components/explore/ProjectBanner";
 
 const Explore = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Explore | WorkFlow";
+  }, []);
   return (
     <section className="w-full h-[100vh] overflow-y-auto">
       <div className="max-w-5xl mx-auto text-gray-300 my-10">

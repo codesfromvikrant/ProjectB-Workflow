@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
-const Pagination = () => {
+const Pagination = ({ totalComp, notesPerPage }) => {
+  console.log(totalComp);
   const [start, setStart] = useState(1);
   const [end, setEnd] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
-  const filteredNotes = useSelector((state) => state.notes.filtered_notes);
-
   const page = Number(searchParams.get("page")) || 1;
 
   const paginate = (key, value) => {
@@ -18,18 +15,16 @@ const Pagination = () => {
     });
   };
 
-  const notesPerPage = 10;
-  const totalPages = Math.ceil(filteredNotes.length / notesPerPage) || 1;
+  const totalPages = Math.ceil(totalComp / notesPerPage) || 1;
   const btnCount = 4;
 
   useEffect(() => {
-    setStart(page);
     if (totalPages <= btnCount) {
       setEnd(totalPages);
     } else {
       setEnd(page + btnCount - 1);
     }
-  }, [page]);
+  }, [totalPages]);
 
   const btnArr = [];
   for (let i = start; i <= end; i++) {
@@ -43,7 +38,7 @@ const Pagination = () => {
           btn === page
             ? "bg-glassyblue border-2 border-blue-600"
             : "bg-secondary"
-        } text-gray-200 px-4 py-2 rounded shadow font-medium`}
+        } text-gray-200 px-4 py-2 rounded shadow text-sm font-medium`}
         onClick={() => paginate("page", btn)}
       >
         {btn}
@@ -78,8 +73,8 @@ const Pagination = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center">
-      <div className="flex justify-center items-center gap-2">
+    <div className="w-max flex justify-center items-center">
+      <div className="flex justify-center items-center gap-2 text-sm">
         <button
           disabled={totalPages > btnCount ? false : true}
           onClick={prev}
@@ -87,7 +82,7 @@ const Pagination = () => {
             totalPages > btnCount
               ? "opacity-100 hover:bg-blue-600 cursor-pointer"
               : "opacity-20"
-          } text-gray-200 bg-secondary  transition-all duration-400 rounded shadow font-medium py-2 px-4`}
+          } text-gray-200 bg-secondary transition-all duration-400 rounded shadow font-medium py-2 px-4`}
         >
           Prev
         </button>

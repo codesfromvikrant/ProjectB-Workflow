@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Header from "../components/notes/Header";
 import Collection from "../components/notes/Collection";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setAllNotes, setFilteredNotes } from "../features/notesSlice";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
-import Pagination from "../components/notes/Pagination";
+// import Pagination from "../components/Pagination";
 
 const Notes = () => {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const Notes = () => {
   };
 
   useEffect(() => {
+    document.title = "Notes & Docs | WorkFlow";
     (async () => {
       try {
         const user_data = await get_data();
@@ -41,7 +42,7 @@ const Notes = () => {
     <div className="py-5 px-20 w-full h-[100vh] overflow-y-auto">
       <Header />
       <Collection />
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 };
