@@ -10,7 +10,7 @@ import { db } from "../../../firebase/config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useSearchParams } from "react-router-dom";
 
-const subtaskDrop = ({ subtask_id, task_id }) => {
+const SubtaskDrop = ({ subtask_id, task_id }) => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const [searchParams] = useSearchParams();
@@ -63,4 +63,4 @@ const subtaskDrop = ({ subtask_id, task_id }) => {
   );
 };
 
-export default subtaskDrop;
+export default SubtaskDrop;
