@@ -43,7 +43,7 @@ const ToDoList = ({ todos, task_id, subtask_id }) => {
   const todoList = todos.map((todo) => {
     return (
       <div key={todo.id} className="flex justify-between items-start gap-3">
-        <span className="flex justify-start items-center gap-3">
+        <span className="flex justify-start items-start gap-3">
           <TickBox
             todoStatus={todo.status}
             todo_id={todo.id}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const Pagination = ({ totalComp, notesPerPage }) => {
-  console.log(totalComp);
   const [start, setStart] = useState(1);
   const [end, setEnd] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();

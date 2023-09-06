@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BiSolidAddToQueue } from "react-icons/bi";
-import { BsThreeDots } from "react-icons/bs";
 import { db } from "../../../firebase/config";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setOngoing } from "../../../features/projectsSlice";
 import OngoingIcon from "../../../assets/icons/ongoing.png";
 import Menu from "../../Menu";
-import OngoingDropdown from "../dropdowns/OngoingDropdown";
+import OngoingDrop from "../dropdowns/OngoingDrop";
+import Dropdown from "../../Dropdown";
 
 const Ongoing = () => {
   const navigate = useNavigate();
@@ -49,8 +49,8 @@ const Ongoing = () => {
       const updatedTime = date.toLocaleTimeString();
 
       const description =
-        project.description.length > 200
-          ? `${project.description.slice(0, 200)}...`
+        project.description.length > 150
+          ? `${project.description.slice(0, 150)}...`
           : project.description;
 
       return (
@@ -59,12 +59,14 @@ const Ongoing = () => {
           className="w-full p-3 bg-secondary rounded-md text-sm text-gray-200 relative flex-col flex justify-start items-start"
         >
           <div
-            onClick={() => showOngoingDropdown(`dialog-${project.id}`)}
+            onClick={() => showOngoingDropdown(`drop-${project.id}`)}
             className=""
           >
             <Menu />
           </div>
-          <OngoingDropdown id={project.id} />
+          <Dropdown id={project.id}>
+            <OngoingDrop project_id={project.id} />
+          </Dropdown>
           <p className="font-semibold text-base capitalize tracking-wide hover:text-blue-700 hover:font-bold cursor-pointer transition-all duration-300">
             {project.title}
           </p>
@@ -75,20 +77,25 @@ const Ongoing = () => {
               (Read More)
             </span>
           </span>
-          <span className="">
-            <span>Due Date : </span>
-            <span>{project.dueDate}</span>
-          </span>
+          <div className="flex justify-start items-center gap-2">
+            <span className="bg-bgblack text-blue-700 text-sm font-semibold tracking-wide py-1 px-4 rounded">
+              <span>Deadline : </span>
+              <span>{project.dueDate}</span>
+            </span>
+            <span className="bg-bgblack py-1 px-4 font-medium text-red-300 rounded">
+              Pending
+            </span>
+          </div>
           <span className="text-xs font-light text-slate-400 mt-1">
             <span className="tracking-wider">Last Updated On : </span>{" "}
             {updatedDate} {updatedTime}
           </span>
           <button
             onClick={() => openProject(project.id, project.status)}
-            className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded"
+            className="flex justify-center items-center w-full gap-2 bg-glassyblue border-2 border-blue-600 mt-4 py-2 px-4 rounded"
           >
             <BiSolidAddToQueue className="text-lg" />
-            <span className="text-xs tracking-wider font-semibold">
+            <span className=" tracking-wider text-sm font-semibold">
               Add Tasks
             </span>
           </button>
@@ -106,10 +113,9 @@ const Ongoing = () => {
             (Projects Live)
           </span>
         </span>
-        <BsThreeDots className="text-2xl" />
       </span>
       <div className="h-[40rem] projects overflow-y-auto overflow-x-hidden">
-        <div className="grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-1 gap-4">
           {projectList ? (
             projectList.reverse()
           ) : (

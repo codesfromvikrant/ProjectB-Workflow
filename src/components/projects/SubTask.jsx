@@ -8,9 +8,16 @@ import {
 } from "../../features/tasksSlice";
 import ToDoList from "./ToDoList";
 import Menu from "../Menu";
+import SubtaskDrop from "./dropdowns/subtaskDrop";
+import Dropdown from "../Dropdown";
+import TaskDrop from "./dropdowns/TaskDrop";
 
 const SubTask = ({ subtasks, task_id, index }) => {
   const dispatch = useDispatch();
+
+  const showSubtaskDropdown = (id) => {
+    document.getElementById(id).classList.toggle("hidden");
+  };
   const subtasksList =
     subtasks.length &&
     subtasks.map((subtask) => {
@@ -19,7 +26,15 @@ const SubTask = ({ subtasks, task_id, index }) => {
           key={subtask.id}
           className="text-gray-200 bg-secondary p-4 rounded-md relative"
         >
-          <Menu />
+          <div
+            onClick={() => showSubtaskDropdown(`drop-${subtask.id}`)}
+            className=""
+          >
+            <Menu />
+          </div>
+          <Dropdown id={subtask.id}>
+            <SubtaskDrop task_id={task_id} subtask_id={subtask.id} />
+          </Dropdown>
           <p className="font-medium mb-1">{subtask.title}</p>
           <p className="text-slate-400 text-sm tracking-wider ">
             {subtask.description}
@@ -49,7 +64,19 @@ const SubTask = ({ subtasks, task_id, index }) => {
     <div className="w-full">
       <div className="flex justify-between items-center text-white">
         <h3 className="text-base font-medium mb-2">#Task {index + 1}</h3>
-        <BsThreeDots className="text-2xl" />
+        <div className="relative">
+          <BsThreeDots
+            onClick={() => {
+              document
+                .getElementById(`drop-${task_id}`)
+                .classList.toggle("hidden");
+            }}
+            className="text-2xl cursor-pointer"
+          />
+          <Dropdown id={task_id}>
+            <TaskDrop task_id={task_id} />
+          </Dropdown>
+        </div>
       </div>
       <button
         onClick={() => {

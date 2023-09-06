@@ -43,7 +43,7 @@ const Collection = () => {
               </p>
             </Link>
 
-            <div className="text-textcolor text-xs mt-3">
+            <div className="text-slate-400 text-xs mt-3">
               {parse(obj.content)}
             </div>
           </div>
