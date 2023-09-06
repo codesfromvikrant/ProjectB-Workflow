@@ -8,7 +8,7 @@ import {
 } from "../../features/tasksSlice";
 import ToDoList from "./ToDoList";
 import Menu from "../Menu";
-import SubtaskDrop from "./dropdowns/subtaskDrop";
+import SubtaskDrop from "./dropdowns/SubtaskDrop";
 import Dropdown from "../Dropdown";
 import TaskDrop from "./dropdowns/TaskDrop";
 
