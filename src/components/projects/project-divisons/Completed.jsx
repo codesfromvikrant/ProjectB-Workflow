@@ -7,7 +7,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { setCompleted } from "../../../features/projectsSlice";
 import Menu from "../../Menu";
-import OngoingDropdown from "../dropdowns/OngoingDropdown";
+import Dropdown from "../../Dropdown";
+import CompletedDrop from "../dropdowns/CompletedDrop";
 
 const Completed = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,8 @@ const Completed = () => {
       const completedTime = completedAt.toLocaleTimeString();
 
       const description =
-        project.description.length > 200
-          ? `${project.description.slice(0, 200)}...`
+        project.description.length > 150
+          ? `${project.description.slice(0, 150)}...`
           : project.description;
 
       return (
@@ -55,9 +56,19 @@ const Completed = () => {
             onClick={() => showOngoingDropdown(`dialog-${project.id}`)}
             className=""
           >
-            <Menu />
+            <Menu
+              onClick={() => {
+                document
+                  .getElementById(`drop-${project.id}`)
+                  .classList.toggle("hidden");
+              }}
+            />
           </div>
-          <OngoingDropdown id={project.id} />
+          <Dropdown id={project.id}>
+            <CompletedDrop id={project.id} />
+          </Dropdown>
+
+          {/* <OngoingDropdown id={project.id} /> */}
           <p className="font-semibold text-base capitalize tracking-wide hover:text-blue-700 hover:font-bold cursor-pointer transition-all duration-300">
             {project.title}
           </p>
@@ -68,7 +79,7 @@ const Completed = () => {
               (Read More)
             </span>
           </span>
-          <span className="">
+          <span className="bg-bgblack texxt-xs font-medium tracking-wider py-1 px-4 rounded text-green-500">
             <span>Completed At : </span>
             <span>{completedDate} </span>
             <span>{completedTime}</span>
@@ -77,12 +88,12 @@ const Completed = () => {
             <span className="tracking-wider">Last Updated On : </span>{" "}
             {updatedDate} {updatedTime}
           </span>
-          <button className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded">
+          {/* <button className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded">
             <RiRestartFill className="text-lg" />
             <span className="text-xs tracking-wider font-semibold">
               Start Again
             </span>
-          </button>
+          </button> */}
         </div>
       );
     });
@@ -97,7 +108,7 @@ const Completed = () => {
             (Projects Done)
           </span>
         </span>
-        <BsThreeDots className="text-2xl" />
+        {/* <BsThreeDots className="text-2xl" /> */}
       </span>
       <div className="h-[40rem] projects overflow-y-auto overflow-x-hidden">
         <div className="grid grid-cols-1 gap-4">

@@ -7,7 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { setArchived } from "../../../features/projectsSlice";
 import Menu from "../../Menu";
-import OngoingDropdown from "../dropdowns/OngoingDropdown";
+// import OngoingDropdown from "../dropdowns/OngoingDropdown";
 
 const Archived = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Archived = () => {
   };
 
   const projectList =
-    archivedProjects.length &&
+    archivedProjects &&
     archivedProjects.map((project) => {
       const updatedAt = new Date(project.updatedAt);
       const DeletedAt = new Date(project.deletedAt);
@@ -42,8 +42,8 @@ const Archived = () => {
       const deletedTime = DeletedAt.toLocaleTimeString();
 
       const description =
-        project.description.length > 200
-          ? `${project.description.slice(0, 200)}...`
+        project.description.length > 150
+          ? `${project.description.slice(0, 150)}...`
           : project.description;
 
       return (
@@ -57,7 +57,7 @@ const Archived = () => {
           >
             <Menu />
           </div>
-          <OngoingDropdown id={project.id} />
+          {/* <OngoingDropdown id={project.id} /> */}
           <p className="font-semibold text-base capitalize tracking-wide hover:text-blue-700 hover:font-bold cursor-pointer transition-all duration-300">
             {project.title}
           </p>
@@ -68,8 +68,8 @@ const Archived = () => {
               (Read More)
             </span>
           </span>
-          <span className="">
-            <span>Deleted At : </span>
+          <span className="bg-bgblack texxt-xs font-medium tracking-wider py-1 px-4 rounded text-yellow-500">
+            <span>Archive At : </span>
             <span>{deletedDate} </span>
             <span>{deletedTime}</span>
           </span>
@@ -77,12 +77,12 @@ const Archived = () => {
             <span className="tracking-wider">Last Updated On : </span>{" "}
             {updatedDate} {updatedTime}
           </span>
-          <button className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded">
+          {/* <button className="flex justify-start items-center gap-2 bg-glassyblue border-2 border-blue-600 mt-2 py-2 px-4 rounded">
             <MdRestorePage className="text-lg" />
             <span className="text-xs tracking-wider font-semibold">
               Restore
             </span>
-          </button>
+          </button> */}
         </div>
       );
     });
@@ -97,7 +97,7 @@ const Archived = () => {
             (Projects Paused)
           </span>
         </span>
-        <BsThreeDots className="text-2xl" />
+        {/* <BsThreeDots className="text-2xl" /> */}
       </span>
       <div className="h-[40rem] projects overflow-y-auto overflow-x-hidden">
         <div className="grid grid-cols-1 gap-4">

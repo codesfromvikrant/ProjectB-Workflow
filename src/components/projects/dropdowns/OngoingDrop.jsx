@@ -7,17 +7,17 @@ import {
   editProjectId,
   projectEditor,
   addInCompleted,
-  addInTrash,
+  addInArchived,
 } from "../../../features/projectsSlice";
 
-const OngoingDropdown = ({ id }) => {
+const OngoingDrop = ({ project_id }) => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
 
   const showProjectEditor = () => {
     dispatch(editProjectId(id));
     dispatch(projectEditor(true));
-    document.getElementById(`dialog-${id}`).classList.toggle("hidden");
+    document.getElementById(`drop-${id}`).classList.toggle("hidden");
   };
 
   const markAsComplete = async (projectID) => {
@@ -43,25 +43,18 @@ const OngoingDropdown = ({ id }) => {
     dispatch(addInCompleted(project_completed));
   };
 
-  const moveToTrash = async (projectID) => {
+  const deleteProject = async (projectID) => {
     const docRef = doc(db, "projects", uid);
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) return;
     const ongoing = docSnap.data().ongoing;
-    const project_trash = ongoing.find((project) => project.id === projectID);
     const ongoing_filtered = ongoing.filter(
       (project) => project.id !== projectID
     );
     await updateDoc(docRef, {
       ongoing: ongoing_filtered,
-      trash: arrayUnion({
-        ...project_trash,
-        status: "trash",
-        deletedAt: new Date().toISOString(),
-      }),
     });
     dispatch(setOngoing(ongoing_filtered));
-    dispatch(addInTrash(project_trash));
   };
 
   const moveToArchive = async (projectID) => {
@@ -88,47 +81,48 @@ const OngoingDropdown = ({ id }) => {
   };
 
   return (
-    <div
-      id={`dialog-${id}`}
-      className="hidden bg-bgblack backdrop-blur-md text-gray-200 tracking-wider font-light py-1 shadow-md rounded-md absolute z-[50] top-[2.6rem] right-[0.7rem]"
-    >
-      <ul>
-        <li
-          onClick={showProjectEditor}
-          className="py-2 px-3 hover:bg-bgblack cursor-pointer"
-        >
-          Edit Project
-        </li>
-        <li
-          onClick={() => {
-            markAsComplete(id);
-            document.getElementById(`dialog-${id}`).classList.toggle("hidden");
-          }}
-          className="py-2 px-3 hover:bg-bgblack cursor-pointer"
-        >
-          Mark As Complete
-        </li>
-        <li
-          onClick={() => {
-            moveToArchive(id);
-            document.getElementById(`dialog-${id}`).classList.toggle("hidden");
-          }}
-          className="py-2 px-3 hover:bg-bgblack cursor-pointer"
-        >
-          Move To Archive
-        </li>
-        <li
-          onClick={() => {
-            moveToTrash(id);
-            document.getElementById(`dialog-${id}`).classList.toggle("hidden");
-          }}
-          className="py-2 px-3 hover:bg-bgblack cursor-pointer"
-        >
-          Delete Project
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li
+        onClick={showProjectEditor}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
+        Edit Project
+      </li>
+      <li
+        onClick={() => {
+          markAsComplete(project_id);
+          document
+            .getElementById(`drop-${project_id}`)
+            .classList.toggle("hidden");
+        }}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
+        Mark As Complete
+      </li>
+      <li
+        onClick={() => {
+          moveToArchive(project_id);
+          document
+            .getElementById(`drop-${project_id}`)
+            .classList.toggle("hidden");
+        }}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
+        Move To Archive
+      </li>
+      <li
+        onClick={() => {
+          deleteProject(project_id);
+          document
+            .getElementById(`drop-${project_id}`)
+            .classList.toggle("hidden");
+        }}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
+        Delete Project
+      </li>
+    </ul>
   );
 };
 
-export default OngoingDropdown;
+export default OngoingDrop;
