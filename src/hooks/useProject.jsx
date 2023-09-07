@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   setOngoing,
+  addInOngoing,
   editProjectId,
   projectEditor,
+  setCompleted,
   addInCompleted,
+  setArchived,
   addInArchived,
 } from "../features/projectsSlice";
 import { arrayUnion, updateDoc } from "firebase/firestore";
@@ -19,56 +22,102 @@ const useProject = () => {
     document.getElementById(`drop-${id}`).classList.toggle("hidden");
   };
 
-  const projectData = async (projectID) => {
-    const ongoing = await getProjectDivisonData(uid, "ongoing");
-    const current_project = ongoing.find((project) => project.id === projectID);
-    const ongoing_filtered = ongoing.filter(
-      (project) => project.id !== projectID
-    );
-    return { ongoing_filtered, current_project };
+  const projectData = async (projectID, status) => {
+    const data = await getProjectDivisonData(uid, status);
+    const currentProject = data.find((project) => project.id === projectID);
+    const filteredProject = data.filter((project) => project.id !== projectID);
+    return { filteredProject, currentProject };
   };
 
-  const deleteProject = async (projectID) => {
-    const { ongoing_filtered } = await projectData(projectID);
+  const deleteProject = async (projectID, status) => {
+    const { filteredProject } = await projectData(projectID, status);
     const ref = projectRef(uid);
     await updateDoc(ref, {
-      ongoing: ongoing_filtered,
+      [status]: filteredProject,
     });
-    dispatch(setOngoing(ongoing_filtered));
+    if (status === "ongoing") {
+      dispatch(setOngoing(filteredProject));
+    } else if (status === "completed") {
+      dispatch(setCompleted(filteredProject));
+    } else {
+      dispatch(setArchived(filteredProject));
+    }
     dispatch(editProjectId(null));
   };
 
-  const markAsComplete = async (projectID) => {
-    const { ongoing_filtered, current_project } = await projectData(projectID);
+  const markAsComplete = async (projectID, status) => {
+    const { filteredProject, currentProject } = await projectData(
+      projectID,
+      status
+    );
     const ref = projectRef(uid);
     await updateDoc(ref, {
-      ongoing: ongoing_filtered,
+      [status]: filteredProject,
       completed: arrayUnion({
-        ...current_project,
+        ...currentProject,
         status: "completed",
         completedAt: new Date().toISOString(),
       }),
     });
-    dispatch(setOngoing(ongoing_filtered));
-    dispatch(addInCompleted(current_project));
+    if (status === "ongoing") {
+      dispatch(setOngoing(filteredProject));
+    } else {
+      dispatch(setArchived(filteredProject));
+    }
+    dispatch(addInCompleted(currentProject));
   };
 
-  const moveToArchive = async (projectID) => {
-    const { ongoing_filtered, current_project } = await projectData(projectID);
+  const moveToArchive = async (projectID, status) => {
+    const { filteredProject, currentProject } = await projectData(
+      projectID,
+      status
+    );
     const ref = projectRef(uid);
     await updateDoc(ref, {
-      ongoing: ongoing_filtered,
+      [status]: filteredProject,
       archived: arrayUnion({
-        ...current_project,
+        ...currentProject,
         status: "archived",
+        archiveAt: new Date().toISOString(),
+      }),
+    });
+    if (status === "ongoing") {
+      dispatch(setOngoing(filteredProject));
+    } else {
+      dispatch(setCompleted(filteredProject));
+    }
+    dispatch(addInArchived(currentProject));
+  };
+
+  const moveToOnGoing = async (projectID, status) => {
+    const { filteredProject, currentProject } = await projectData(
+      projectID,
+      status
+    );
+    const ref = projectRef(uid);
+    await updateDoc(ref, {
+      [status]: filteredProject,
+      ongoing: arrayUnion({
+        ...currentProject,
+        status: "ongoing",
         updatedAt: new Date().toISOString(),
       }),
     });
-    dispatch(setOngoing(ongoing_filtered));
-    dispatch(addInArchived(current_project));
+    if (status === "completed") {
+      dispatch(setCompleted(filteredProject));
+    } else {
+      dispatch(setArchived(filteredProject));
+    }
+    dispatch(addInOngoing(currentProject));
   };
 
-  return { showProjectEditor, deleteProject, markAsComplete, moveToArchive };
+  return {
+    showProjectEditor,
+    deleteProject,
+    markAsComplete,
+    moveToArchive,
+    moveToOnGoing,
+  };
 };
 
 export default useProject;

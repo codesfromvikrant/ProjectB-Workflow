@@ -57,7 +57,7 @@ const Completed = () => {
         </div>
 
         <Dropdown id={project.id}>
-          <CompletedDrop id={project.id} />
+          <CompletedDrop projectID={project.id} />
         </Dropdown>
         <p
           onClick={() => viewProject(navigate, project.id, project.status)}

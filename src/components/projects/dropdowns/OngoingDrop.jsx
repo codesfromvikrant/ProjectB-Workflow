@@ -19,7 +19,7 @@ const OngoingDrop = ({ projectID, ...props }) => {
       </li>
       <li
         onClick={() => {
-          markAsComplete(projectID);
+          markAsComplete(projectID, "ongoing");
           showDropdown(`drop-${projectID}`);
         }}
         className="py-2 px-3 hover:bg-bgblack cursor-pointer"
@@ -28,7 +28,7 @@ const OngoingDrop = ({ projectID, ...props }) => {
       </li>
       <li
         onClick={() => {
-          moveToArchive(projectID);
+          moveToArchive(projectID, "ongoing");
           showDropdown(`drop-${projectID}`);
         }}
         className="py-2 px-3 hover:bg-bgblack cursor-pointer"
@@ -37,7 +37,7 @@ const OngoingDrop = ({ projectID, ...props }) => {
       </li>
       <li
         onClick={() => {
-          deleteProject(projectID);
+          deleteProject(projectID, "ongoing");
           showDropdown(`drop-${projectID}`);
         }}
         className="py-2 px-3 hover:bg-bgblack cursor-pointer"

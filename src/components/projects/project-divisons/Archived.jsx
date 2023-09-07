@@ -7,6 +7,8 @@ import { useNavigate } from "react-router";
 import Menu from "../../Menu";
 import { getProjectsData } from "../../../utils/firestoreUtils";
 import { viewProject } from "../../../utils/navigateUtils";
+import Dropdown from "../../Dropdown";
+import ArchiveDrop from "../dropdowns/ArchiveDrop";
 
 const Archived = () => {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const Archived = () => {
   }, [uid]);
 
   const showOngoingDropdown = (id) => {
-    document.getElementById(id).classList.toggle("hidden");
+    document.getElementById(`drop-${id}`).classList.toggle("hidden");
   };
 
   const projectList = archivedProjects?.map((project) => {
@@ -47,13 +49,12 @@ const Archived = () => {
         key={project.id}
         className="w-full p-3 bg-secondary rounded-md text-sm text-gray-200 relative flex-col flex justify-start items-start"
       >
-        <div
-          onClick={() => showOngoingDropdown(`dialog-${project.id}`)}
-          className=""
-        >
+        <div onClick={() => showOngoingDropdown(project.id)}>
           <Menu />
         </div>
-
+        <Dropdown id={project.id}>
+          <ArchiveDrop projectID={project.id} />
+        </Dropdown>
         <p
           onClick={() => viewProject(navigate, project.id, project.status)}
           className="font-medium text-base capitalize tracking-wide hover:text-blue-700 hover:font-bold cursor-pointer transition-all duration-300"

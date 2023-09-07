@@ -1,13 +1,26 @@
 import React from "react";
+import useProject from "../../../hooks/useProject";
 
-const CompletedDrop = () => {
+const CompletedDrop = ({ projectID }) => {
+  const { deleteProject, moveToArchive, moveToOnGoing } = useProject();
   return (
     <ul>
-      <li className="py-2 px-3 hover:bg-bgblack cursor-pointer">
+      <li
+        onClick={() => moveToArchive(projectID, "completed")}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
         Add To Archive
       </li>
-      <li className="py-2 px-3 hover:bg-bgblack cursor-pointer">Start Again</li>
-      <li className="py-2 px-3 hover:bg-bgblack cursor-pointer">
+      <li
+        onClick={() => moveToOnGoing(projectID, "completed")}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
+        Start Again
+      </li>
+      <li
+        onClick={() => deleteProject(projectID, "completed")}
+        className="py-2 px-3 hover:bg-bgblack cursor-pointer"
+      >
         Delete Project
       </li>
     </ul>
