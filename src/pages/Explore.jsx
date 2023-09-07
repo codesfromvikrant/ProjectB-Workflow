@@ -23,7 +23,7 @@ const Explore = () => {
         <h1 className="text-3xl font-semibold text-gray-200">
           Explore, Create, and Organize: Unleash Your Project's Potential
         </h1>
-        <p className="font-light my-4">
+        <p className="font-light my-4 text-slate-400">
           Discover a new era of project management with our app, where every
           idea, every note, and every document comes to life. Seamlessly explore
           the art of organization as you streamline tasks, create stunning
@@ -35,12 +35,12 @@ const Explore = () => {
         <div className="">
           <span className="flex justify-start items-center gap-2">
             <FcTodoList className="text-white text-2xl" />
-            <h3 className="text-lg text-white tracking-wide">
+            <h3 className="text-lg text-white font-medium tracking-wide">
               Forge Seamless Collaboration, Pave the Project Path, and Masterful
               Task Management
             </h3>
           </span>
-          <p className="font-light text-textcolor mt-2 mb-4">
+          <p className="font-light text-slate-400 mt-2 mb-4">
             Embark on a journey of project management excellence with our
             cutting-edge app, where collaboration flourishes, paths are paved,
             and tasks are mastered. Experience the power of streamlined
@@ -58,11 +58,11 @@ const Explore = () => {
         <div className="mt-6">
           <span className="flex justify-start items-center gap-2">
             <FcDocument className="text-white text-2xl" />
-            <h3 className="text-lg text-white tracking-wide">
+            <h3 className="text-lg text-white font-medium tracking-wide">
               Document Your Journey
             </h3>
           </span>
-          <p className="font-light text-textcolor mt-2 mb-4">
+          <p className="font-light text-slate-400 mt-2 mb-4">
             From inception to completion, document every milestone with
             precision. Our intuitive interface lets you create and manage
             project documents effortlessly, ensuring that your journey is
@@ -79,11 +79,11 @@ const Explore = () => {
         <div className="mt-6">
           <span className="flex justify-start items-center gap-2">
             <FcImageFile className="text-white text-2xl" />
-            <h3 className="text-lg text-white tracking-wide">
+            <h3 className="text-lg text-white font-medium tracking-wide">
               Curate Beautiful Galleries
             </h3>
           </span>
-          <p className="font-light text-textcolor mt-2 mb-4">
+          <p className="font-light text-slate-400 mt-2 mb-4">
             Immerse yourself in visual storytelling. Our gallery feature enables
             you to curate captivating visual collections, turning your projects
             into a work of art that speaks volumes.

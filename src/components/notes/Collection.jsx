@@ -52,7 +52,10 @@ const Collection = () => {
     });
 
   return (
-    <div className="my-5">
+    <div className="my-3">
+      <h3 className="text-3xl font-semibold text-gray-300 mb-2">
+        Saved Notes_
+      </h3>
       {tags_selected.length > 0 && (
         <div className="flex justify-start items-center gap-2 mb-4">
           <span className="text-gray-200 font-medium">Filtered By : </span>

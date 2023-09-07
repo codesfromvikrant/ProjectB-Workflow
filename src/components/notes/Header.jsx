@@ -67,7 +67,7 @@ const Header = () => {
       </button>
       <button
         onClick={viewAllNotes}
-        className="flex justify-start items-center gap-1 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-medium"
+        className="flex justify-start items-center gap-1 bg-glassyblue hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-medium"
       >
         <span className="tracking-wide">All</span>
         <HiDocument className="text-xl" />
@@ -75,7 +75,7 @@ const Header = () => {
       <button
         onClick={filterArchive}
         className={`${
-          archive ? "bg-glassyblue border-2 border-blue-600" : "bg-secondary"
+          archive ? "bg-glassyblue border-2 border-blue-600" : "bg-glassyblue"
         } flex justify-start items-center gap-2 hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md rounded-md font-medium`}
       >
         <span className="tracking-wide">Archive</span>
@@ -84,7 +84,7 @@ const Header = () => {
       <div className="relative">
         <button
           onClick={() => dispatch(openFilterDialog())}
-          className="flex justify-start items-center gap-2 bg-secondary hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-medium"
+          className="flex justify-start items-center gap-2 bg-glassyblue hover:bg-blue-700 hover:text-white transition-all duration-500 text-sm py-3 px-5 shadow-md w-max rounded-md font-medium"
         >
           <span className="tracking-wide w-max">Filter By Tags</span>
           <ImPriceTags className="text-xl " />
@@ -97,7 +97,7 @@ const Header = () => {
         value={value}
         placeholder="Search For Notes..."
         onChange={searchForNotes}
-        className="p-3 rounded text-sm font-medium bg-secondary w-full"
+        className="p-3 rounded text-sm font-medium bg-glassyblue w-full"
       />
     </div>
   );

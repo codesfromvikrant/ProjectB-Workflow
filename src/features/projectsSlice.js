@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   ongoing: [],
   completed: [],
-  trash: [],
   archived: [],
   editproject_id: null,
   project_editor: false,
@@ -25,12 +24,6 @@ export const projectsSlice = createSlice({
     addInCompleted: (state, action) => {
       state.completed.push(action.payload);
     },
-    setTrash: (state, action) => {
-      state.trash = action.payload;
-    },
-    addInTrash: (state, action) => {
-      state.trash.push(action.payload);
-    },
     setArchived: (state, action) => {
       state.archived = action.payload;
     },
@@ -49,13 +42,11 @@ export const projectsSlice = createSlice({
 export const {
   setOngoing,
   addInOngoing,
-  editProjectId,
-  projectEditor,
   setCompleted,
   addInCompleted,
-  setTrash,
-  addInTrash,
   setArchived,
   addInArchived,
+  editProjectId,
+  projectEditor,
 } = projectsSlice.actions;
 export default projectsSlice.reducer;
