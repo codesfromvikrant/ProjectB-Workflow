@@ -24,16 +24,17 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl text-start tracking-wide text-gray-200 mb-3 font-black">
-            Elevate Your Media Experience with MediaHarbor.
+            Empower Your Teams with Workflow Excellence. Navigate Projects,
+            Notes, and Galleries Effortlessly.
           </h1>
           <p className="text-base font-light text-start text-gray-400">
-            Welcome to MediaHarbor – your hub for seamless file management and
-            captivating image galleries. Unleash the power of organization,
-            creativity, and secure storage. Effortlessly upload, organize, and
-            share files while enjoying an immersive visual journey. Discover the
-            beauty of your media with MediaHarbor – where memories find their
-            haven. Feel free to adjust and fine-tune the wording to fit your
-            desired tone and messaging.
+            In the world of project management, simplicity is key. Workflow
+            provides a seamless and effortless experience for navigating through
+            projects, taking notes, and curating image galleries. Whether you're
+            a seasoned pro or new to project management, our user-friendly
+            interface ensures that you can easily access, organize, and find
+            what you need, when you need it. Effortless navigation, at your
+            fingertips.
           </p>
         </div>
 
