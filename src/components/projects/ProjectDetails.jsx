@@ -23,15 +23,7 @@ const ProjectDetails = () => {
       <p className="text-slate-400 mt-1 text-sm tracking-wide">
         {projectDetails.description}
       </p>
-      {/* <div className="flex justify-start items-center gap-2 mt-6 mb-2">
-        <span className="font-medium">Tags : </span>
-        {projectDetails.isFav && (
-          <div className=" bg-blue-600 px-4 py-1 text-sm font-medium tracking-wide w-max rounded">
-            Favourite
-          </div>
-        )}
-      </div> */}
-      <div className="flex justify-start items-center mt-3 gap-6">
+      <div className="flex justify-start items-center flex-wrap mt-3 gap-3">
         <div className="text-base capitalize text-gray-200 font-semibold tracking-wider">
           Status :{" "}
           <span className="text-slate-400">{projectDetails.status}</span>

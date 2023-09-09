@@ -36,8 +36,8 @@ const TaskManager = () => {
   }, [id, status, uid]);
 
   return (
-    <section className="w-full h-[100vh] overflow-y-auto mx-auto py-10 relative">
-      <div className="bg-bgblack max-w-6xl mx-auto p-6 rounded-md">
+    <section className="w-full h-[100vh] overflow-y-auto mx-auto lg:px-6 px-4 py-10 relative">
+      <div className="bg-bgblack max-w-6xl mx-auto md:p-6 p-3 rounded-md">
         <ProjectDetails />
         <Tasks />
         {taskEditor && <TaskEditor />}

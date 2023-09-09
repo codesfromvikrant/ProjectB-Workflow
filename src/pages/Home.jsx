@@ -14,8 +14,8 @@ export default function Home() {
 
   return (
     <main style={style}>
-      <section className="flex justify-between items-center gap-12 max-w-6xl mx-auto py-16">
-        <div className="w-2/3">
+      <section className="flex justify-between items-center lg:flex-row flex-col gap-10 max-w-6xl mx-auto px-4 py-16">
+        <div className="sm:w-2/3 w-full">
           <div className="flex justify-start items-center gap-2 mx-auto mb-4">
             <img src={Logo} className="w-12" alt="mediaharbor-logo" />
             <p className="text-xl font-black text-center uppercase w-max text-slate-300">
@@ -23,7 +23,7 @@ export default function Home() {
             </p>
           </div>
 
-          <h1 className="text-4xl text-start tracking-wide text-gray-200 mb-3 font-black">
+          <h1 className="md:text-4xl text-3xl text-start tracking-wide text-gray-200 mb-3 font-black">
             Empower Your Teams with Workflow Excellence. Navigate Projects,
             Notes, and Galleries Effortlessly.
           </h1>
@@ -38,7 +38,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="w-1/3 flex justify-center items-center gap-2  flex-col">
+        <div className="lg:w-1/3 md:w-1/2 sm:w-2/3 w-full flex justify-center items-center gap-2  flex-col">
           <LoginforTest emailAuth={emailAuth} />
           <p className="text-gray-200 text-4xl font-extrabold text-center">
             or
