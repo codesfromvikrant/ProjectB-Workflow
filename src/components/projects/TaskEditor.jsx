@@ -111,17 +111,17 @@ const TaskEditor = () => {
   };
 
   return (
-    <div className="bg-bgblack backdrop-blur-lg p-4 w-[25rem] h-[100vh] overflow-y-auto fixed top-0 right-0">
+    <div className="bg-bgblack backdrop-blur-lg p-4 sm:w-[25rem] w-full h-[100vh] overflow-y-auto fixed top-0 right-0">
       <div className="flex justify-between items-center text-sm font-medium text-gray-200 mb-4">
         <button
           onClick={() => dispatch(setTaskEditor(false))}
-          className="bg-secondary py-3 px-6 rounded-md"
+          className="bg-secondary py-2 px-6 rounded-md"
         >
           Back
         </button>
         <button
           onClick={addNewSubtask}
-          className="bg-glassyblue border-2 border-blue-600 py-3 px-6 rounded-md"
+          className="bg-glassyblue border-2 border-blue-600 py-2 px-6 rounded-md"
         >
           Publish
         </button>

@@ -60,7 +60,10 @@ const ToDoList = ({ todos, task_id, subtask_id }) => {
             {todo.todo_task}
           </span>
         </span>
-        <FaTrash onClick={() => deleteTodo(todo.id)} className="text-red-600" />
+        <FaTrash
+          onClick={() => deleteTodo(todo.id)}
+          className="text-red-600 min-w-[0.9rem]"
+        />
       </div>
     );
   });

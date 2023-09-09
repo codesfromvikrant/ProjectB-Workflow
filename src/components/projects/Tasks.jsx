@@ -1,5 +1,5 @@
 import React from "react";
-import TasksIcon from "../../assets/icons/tasks.png";
+import { BiSolidAddToQueue } from "react-icons/bi";
 import SubTask from "./SubTask";
 import { useSelector, useDispatch } from "react-redux";
 import { setProjectDetails } from "../../features/tasksSlice";
@@ -57,24 +57,28 @@ const Tasks = () => {
     });
 
   return (
-    <section className="mt-10">
-      <div className="text-gray-200 flex justify-between items-center gap-4 mb-10">
-        <div className="flex justify-start items-center gap-4">
-          <img src={TasksIcon} className="w-8" />
-          <h3 className="text-3xl font-semibold w-max">Manage Tasks</h3>
+    <section className="mt-4">
+      <div className="text-gray-200 flex justify-between items-center md:gap-0 sm:gap-3 gap-6 flex-col mb-10">
+        <h3 className="text-4xl font-semibold w-max">Manage Tasks</h3>
+
+        <div className="w-full flex sm:justify-between items-center sm:flex-row flex-col gap-4">
           <button
             onClick={getTasks}
-            className="text-gray-200 text-center text-sm font-medium w-max bg-glassyblue border-2 border-blue-600 py-2 px-4 rounded-md"
+            className="text-gray-200 text-center text-sm font-medium sm:w-max w-full flex sm:justify-start justify-center items-center gap-2 bg-glassyblue border-2 border-blue-600 sm:py-2 py-3 px-8 rounded-md"
           >
-            Add New Task
+            <BiSolidAddToQueue className="text-base" />
+            <span>Add New Task</span>
           </button>
+
+          <Pagination
+            totalComp={projectDetails.tasks ? projectDetails.tasks.length : 0}
+            notesPerPage={3}
+          />
         </div>
-        <Pagination
-          totalComp={projectDetails.tasks ? projectDetails.tasks.length : 0}
-          notesPerPage={3}
-        />
       </div>
-      <div className="grid grid-cols-3 gap-4">{tasksList}</div>
+      <div className="grid sm:grid-cols-3 grid-cols-1 md:gap-4 sm:gap-3 gap-8">
+        {tasksList}
+      </div>
     </section>
   );
 };

@@ -37,7 +37,7 @@ const TickBox = ({ todoStatus, todo_id, task_id, subtask_id }) => {
   return (
     <div
       onClick={updateTodoStatus}
-      className="w-4 h-4 bg-glassyblue border-2 border-blue-600 rounded mt-1 flex justify-center items-center"
+      className="min-w-[0.9rem] min-h-[0.9rem] bg-glassyblue border-2 border-blue-600 rounded mt-1 flex justify-center items-center"
     >
       {todoStatus === "completed" ? <TiTick /> : null}
     </div>

@@ -13,7 +13,7 @@ const Explore = () => {
     document.title = "Explore | WorkFlow";
   }, []);
   return (
-    <section className="w-full h-[100vh] overflow-y-auto">
+    <section className="w-full h-[100vh] overflow-y-auto px-6">
       <div className="max-w-5xl mx-auto text-gray-300 my-10">
         <div className="welcome-note text-sm font-light bg-glassyblue p-3 rounded-md border-2 border-blue-600 mb-6">
           Welcome aboard! You've officially joined our community of creators and

@@ -24,7 +24,7 @@ const SubTask = ({ subtasks, task_id, index }) => {
       return (
         <div
           key={subtask.id}
-          className="text-gray-200 bg-secondary p-4 rounded-md relative"
+          className="text-gray-200 bg-secondary md:p-4 p-3 rounded-md relative"
         >
           <div
             onClick={() => showSubtaskDropdown(`drop-${subtask.id}`)}
