@@ -113,6 +113,7 @@ const useProject = () => {
 
   return {
     showProjectEditor,
+    projectData,
     deleteProject,
     markAsComplete,
     moveToArchive,
