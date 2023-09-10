@@ -62,7 +62,7 @@ const ImagesGrid = () => {
           hideDetails(`details-${nanoId}`);
         }}
         style={style}
-        className="flex justify-end items-end h-[18rem] relative rounded-md cursor-pointer shadow-md w-full"
+        className="flex justify-end items-end w-full h-[18rem] relative rounded-md cursor-pointer shadow-md"
       >
         <div
           onClick={() => {
@@ -102,7 +102,11 @@ const ImagesGrid = () => {
     );
   });
 
-  return <div className="grid grid-cols-5 gap-3 my-8">{renderImages}</div>;
+  return (
+    <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3 my-8">
+      {renderImages}
+    </div>
+  );
 };
 
 export default ImagesGrid;

@@ -32,7 +32,6 @@ const Collection = () => {
         >
           <div className="cursor-pointer h-[16rem] text-sm bg-transparent text-gray-300 overflow-hidden">
             <Menu />
-            {/*<Dropdown id={obj.id} moveToTrash={moveToTrash} notetags={obj.tags} /> */}
             <div className="text-[0.7rem] leading-4 mb-1 text-slate-400">
               <p className="">Last Updated On :</p>
               <p className="font-semibold">{obj.last_update}</p>
@@ -66,7 +65,9 @@ const Collection = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-5 gap-3">{notes}</div>
+      <div className="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-1 gap-3">
+        {notes}
+      </div>
     </div>
   );
 };

@@ -55,7 +55,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-start items-center gap-3 text-slate-400">
+    <div className="flex justify-start items-center md:flex-nowrap flex-wrap gap-3 text-slate-400">
       <button
         onClick={addNote}
         className="flex justify-start items-center gap-2 shadow-md bg-glassyblue border-2 border-blue-600 hover:bg-blue-600 py-3 px-5 rounded-md w-max text-gray-200"

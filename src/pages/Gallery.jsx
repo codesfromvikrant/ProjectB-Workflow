@@ -52,15 +52,15 @@ const Gallery = () => {
   }, [uid]);
 
   return (
-    <div className="py-2 px-20 w-full h-[100vh] overflow-y-auto">
-      <UploadBtn />
-      <div className="my-4">
-        <SearchBar />
-      </div>
-      <div className="">
+    <main className="py-2 sm:px-6 px-4 w-full h-[100vh] overflow-y-auto">
+      <div className="max-w-6xl mx-auto h-[100vh]">
+        <div className="my-4 flex justify-start items-center md:flex-row flex-col gap-2">
+          <UploadBtn />
+          <SearchBar />
+        </div>
         <ImagesGrid />
       </div>
-    </div>
+    </main>
   );
 };
 

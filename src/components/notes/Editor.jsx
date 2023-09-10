@@ -190,8 +190,8 @@ const Editor = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-secondary py-4 px-6 rounded-lg shadow-md mt-4 ">
-      <div className="flex justify-between items-center py-3 border-b-[1px] border-blureffect mb-6">
+    <div className="max-w-4xl mx-auto bg-secondary py-4 sm:px-6 px-3 rounded-lg shadow-md mt-4 ">
+      <div className="flex justify-between sm:items-center items-start gap-2 sm:flex-row flex-col py-3 border-b-[1px] border-blureffect mb-6">
         <button
           onClick={() => navigate(-1)}
           className="w-max flex justify-start items-center gap-1 shadow-md text-textcolor bg-primary hover:text-gray-200 hover:bg-blue-700 transition-all duration-500 py-2 px-4 rounded-md"
@@ -199,7 +199,7 @@ const Editor = () => {
           <IoCaretBackCircle />
           <span className="text-sm font-semibold tracking-wide">Back</span>
         </button>
-        <div className="flex justify-start items-center gap-2">
+        <div className="flex justify-start items-center flex-wrap gap-2">
           <div className="relative">
             <button
               onClick={() => dispatch(openAddTagDialog())}
@@ -237,7 +237,7 @@ const Editor = () => {
       <input
         value={data.title}
         onChange={handleTitleChange}
-        className="bg-transparent w-full outline-none mb-4 py-2 text-gray-200 placeholder:text-blureffect placeholder:font-extrabold text-4xl"
+        className="bg-transparent w-full outline-none mb-4 py-2 text-gray-200 placeholder:text-blureffect placeholder:font-extrabold font-semibold md:text-4xl text-3xl"
         type="text"
         placeholder="New Post Title Here..."
       />
