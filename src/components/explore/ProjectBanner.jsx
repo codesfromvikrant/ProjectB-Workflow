@@ -14,9 +14,9 @@ const ProjectBanner = () => {
     <div style={style} className="w-full h-[20rem] rounded-md shadow-md my-8">
       <div
         style={gradient}
-        className="w-full h-full rounded-md flex justify-start items-center px-8"
+        className="w-full h-full rounded-md flex justify-start items-center md:px-8 px-4"
       >
-        <div className="text-white flex justify-start items-start flex-col text-2xl font-bold w-1/2">
+        <div className="text-white flex justify-start items-start flex-col text-2xl font-bold md:w-1/2">
           <span className="font-black tracking-wide">
             Task Mastery, Perfected
           </span>
