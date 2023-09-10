@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { FcTodoList } from "react-icons/fc";
-import { FcDocument } from "react-icons/fc";
-import { FcImageFile } from "react-icons/fc";
+import projectIcon from "../assets/icons/project_lab.png";
+import NotesIcon from "../assets/icons/notes.png";
+import galleryIcon from "../assets/icons/gallery.png";
 import { useNavigate } from "react-router";
 
 import ProjectBanner from "../components/explore/ProjectBanner";
@@ -33,8 +33,8 @@ const Explore = () => {
         <ProjectBanner />
 
         <div className="">
-          <span className="flex justify-start items-center gap-2">
-            <FcTodoList className="text-white text-2xl" />
+          <span className="flex justify-start items-start gap-3">
+            <img src={projectIcon} className="w-8" />
             <h3 className="text-lg text-white font-medium tracking-wide">
               Forge Seamless Collaboration, Pave the Project Path, and Masterful
               Task Management
@@ -56,8 +56,8 @@ const Explore = () => {
         </div>
 
         <div className="mt-6">
-          <span className="flex justify-start items-center gap-2">
-            <FcDocument className="text-white text-2xl" />
+          <span className="flex justify-start items-start gap-3">
+            <img src={NotesIcon} className="w-8" />
             <h3 className="text-lg text-white font-medium tracking-wide">
               Document Your Journey
             </h3>
@@ -77,8 +77,8 @@ const Explore = () => {
         </div>
 
         <div className="mt-6">
-          <span className="flex justify-start items-center gap-2">
-            <FcImageFile className="text-white text-2xl" />
+          <span className="flex justify-start items-start gap-3">
+            <img src={galleryIcon} className="w-8" />
             <h3 className="text-lg text-white font-medium tracking-wide">
               Curate Beautiful Galleries
             </h3>
