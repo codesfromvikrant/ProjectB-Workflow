@@ -14,7 +14,7 @@ import LinkedinIcon from "../assets/icons/linkedin.png";
 
 const SideBar = () => {
   return (
-    <div className="lg:flex hidden justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8">
+    <div className="lg:flex justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8 lg:static fixed top-0 left-0 z-[99] shadow-md">
       <div className="flex justify-start items-start gap-6 flex-col">
         <div className="flex justify-center items-center gap-2 mx-auto">
           <img src={Logo} className="w-12" alt="mediaharbor-logo" />

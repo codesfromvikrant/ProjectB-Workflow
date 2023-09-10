@@ -39,11 +39,13 @@ const Notes = () => {
   }, []);
 
   return (
-    <div className="py-5 px-20 w-full h-[100vh] overflow-y-auto">
-      <Header />
-      <Collection />
-      {/* <Pagination /> */}
-    </div>
+    <main className="w-full h-[100vh] overflow-y-auto">
+      <div className="py-5 sm:px-6 px-4 max-w-6xl mx-auto ">
+        <Header />
+        <Collection />
+        {/* <Pagination /> */}
+      </div>
+    </main>
   );
 };
 

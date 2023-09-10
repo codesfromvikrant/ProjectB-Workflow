@@ -5,6 +5,7 @@ const initialState = {
   uid: "",
   username: "",
   email_id: "",
+  show_sidebar: false,
 };
 
 export const authSlice = createSlice({
@@ -23,10 +24,13 @@ export const authSlice = createSlice({
       state.uid = "";
       state.username = "";
       state.email_id = "";
+    },
+    showSidebar: (state) => {
+      state.show_sidebar = !state.show_sidebar;
     }
   },
 });
 
-export const { setLoggedIn, setAuth, removeAuth } = authSlice.actions;
+export const { setLoggedIn, setAuth, removeAuth, showSidebar } = authSlice.actions;
 
 export default authSlice.reducer;

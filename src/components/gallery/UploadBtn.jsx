@@ -37,7 +37,7 @@ const UploadBtn = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center w-max gap-3 p-3 rounded-md shadow-md z-50 bg-secondary fixed bottom-8 right-12">
+      <div className="flex justify-between sm:items-center items-start sm:flex-row flex-col md:w-max w-full gap-3 p-2 rounded-md shadow z-50 bg-secondary ">
         <input
           ref={browseRef}
           type="file"
@@ -45,10 +45,12 @@ const UploadBtn = () => {
         />
         <div
           onClick={uploadImage}
-          className="flex justify-start items-center w-max gap-2 bg-blue-700 py-[0.4rem] px-6 rounded-md text-white shadow-md cursor-pointer"
+          className="flex justify-start items-center sm:w-max w-full gap-2 bg-blue-700 py-[0.4rem] px-6 rounded-md text-white shadow-md cursor-pointer"
         >
           <BiSolidCloudUpload className="text-xl" />
-          <span className="text-sm font-lato">Upload Images</span>
+          <span className="text-sm font-lato font-semibold w-max">
+            Upload Images
+          </span>
         </div>
       </div>
       <p className="text-red-400">{errorMsg}</p>
