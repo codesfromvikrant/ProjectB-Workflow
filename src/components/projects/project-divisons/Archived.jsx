@@ -15,6 +15,7 @@ const Archived = () => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const archivedProjects = useSelector((state) => state.projects.archived);
+  const filterArchived = useSelector((state) => state.projects.filter_archived);
 
   const getArchivedProjects = async () => {
     const projectData = await getProjectsData(uid);
@@ -30,7 +31,7 @@ const Archived = () => {
     document.getElementById(`drop-${id}`).classList.toggle("hidden");
   };
 
-  const projectList = archivedProjects?.map((project) => {
+  const projectList = filterArchived?.map((project) => {
     const updatedAt = new Date(project.updatedAt);
     const DeletedAt = new Date(project.deletedAt);
     const updatedDate = updatedAt.toLocaleDateString();

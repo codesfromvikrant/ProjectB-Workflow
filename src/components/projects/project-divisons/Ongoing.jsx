@@ -15,7 +15,7 @@ const Ongoing = () => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const ongoingProjects = useSelector((state) => state.projects.ongoing);
-
+  const filterOngoing = useSelector((state) => state.projects.filter_ongoing);
   const getOngoingProjects = async () => {
     const projectData = await getProjectsData(uid);
     dispatch(setOngoing(projectData.ongoing));
@@ -30,10 +30,14 @@ const Ongoing = () => {
     document.getElementById(id).classList.toggle("hidden");
   };
 
-  const projectList = ongoingProjects?.map((project) => {
+  const projectList = filterOngoing?.map((project) => {
     const date = new Date(project.updatedAt);
     const updatedDate = date.toLocaleDateString();
     const updatedTime = date.toLocaleTimeString();
+
+    const todayDate = new Date();
+    const dueDate = new Date(project.dueDate);
+    console.log(todayDate.getTime() >= dueDate.getTime());
 
     const MAX_DESCRIPTION_LENGTH = 150;
     const description =
@@ -54,7 +58,7 @@ const Ongoing = () => {
         </Dropdown>
         <p
           onClick={() => viewProject(navigate, project.id, project.status)}
-          className="font-medium text-base capitalize tracking-wide hover:text-blue-700 hover:font-bold cursor-pointer transition-all duration-300"
+          className="font-medium text-base capitalize tracking-wide"
         >
           {project.title}
         </p>
@@ -71,11 +75,13 @@ const Ongoing = () => {
         <div className="flex justify-start items-center gap-2 mt-3">
           <span className="bg-bgblack text-blue-600 text-sm font-semibold tracking-wide py-1 px-4 rounded">
             <span>Deadline : </span>
-            <span>{project.dueDate}</span>
+            <span>{project.dueDate ? project.dueDate : "N/A"}</span>
           </span>
-          <span className="bg-bgblack py-1 px-4 font-medium text-red-700 rounded">
-            Pending
-          </span>
+          {todayDate.getTime() >= dueDate.getTime() ? (
+            <span className="bg-bgblack text-red-700 text-sm font-semibold tracking-wide py-1 px-4 rounded">
+              <span>Pending</span>
+            </span>
+          ) : null}
         </div>
         <span className="text-xs font-light text-slate-400 mt-1">
           <span className="tracking-wider">Last Updated On : </span>{" "}
