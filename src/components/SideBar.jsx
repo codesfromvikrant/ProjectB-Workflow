@@ -7,8 +7,6 @@ import exploreIcon from "../assets/icons/explore.png";
 import projectIcon from "../assets/icons/project_lab.png";
 import notesIcon from "../assets/icons/notes.png";
 import galleryIcon from "../assets/icons/gallery.png";
-import notificationIcon from "../assets/icons/notifications.png";
-import settingsIcon from "../assets/icons/settings.png";
 import supportIcon from "../assets/icons/support.png";
 import logoutIcon from "../assets/icons/log_out.png";
 import LinkedinIcon from "../assets/icons/linkedin.png";
@@ -19,7 +17,7 @@ const SideBar = () => {
     <div
       className={`${
         sidebar ? "lg:flex hidden" : ""
-      } "justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8 lg:static fixed top-0 left-0 z-[99] shadow-md"`}
+      } "lg:flex justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8 lg:static fixed top-0 left-0 z-[99] shadow-md"`}
     >
       <div className="flex justify-start items-start gap-6 flex-col">
         <div className="flex justify-center items-center gap-2 mx-auto">

@@ -15,7 +15,9 @@ const Completed = () => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const completedProjects = useSelector((state) => state.projects.completed);
-
+  const filterCompleted = useSelector(
+    (state) => state.projects.filter_completed
+  );
   const getCompletedProjects = async () => {
     const projectData = await getProjectsData(uid);
     dispatch(setCompleted(projectData.completed));
@@ -30,7 +32,7 @@ const Completed = () => {
     document.getElementById(id).classList.toggle("hidden");
   };
 
-  const projectList = completedProjects?.map((project) => {
+  const projectList = filterCompleted?.map((project) => {
     const updatedAt = new Date(project.updatedAt);
     const completedAt = new Date(project.completedAt);
     const updatedDate = updatedAt.toLocaleDateString();

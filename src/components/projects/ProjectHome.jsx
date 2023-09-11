@@ -6,13 +6,38 @@ import Completed from "./project-divisons/Completed";
 import Archived from "./project-divisons/Archived";
 import AddProject from "./AddProject";
 import { useSelector, useDispatch } from "react-redux";
-import { projectEditor } from "../../features/projectsSlice";
+import {
+  filterOngoing,
+  filterCompleted,
+  filterArchived,
+  projectEditor,
+} from "../../features/projectsSlice";
 
 const ProjectHome = () => {
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const projectEditorState = useSelector(
     (state) => state.projects.project_editor
   );
+  const ongoing = useSelector((state) => state.projects.ongoing);
+  const completed = useSelector((state) => state.projects.completed);
+  const archived = useSelector((state) => state.projects.archived);
+
+  const searchResult = (e) => {
+    setSearch(e.target.value);
+    const fileteredOngoing = ongoing.filter((project) => {
+      return project.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    const fileteredCompleted = completed.filter((project) => {
+      return project.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    const fileteredArchived = archived.filter((project) => {
+      return project.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    dispatch(filterOngoing(fileteredOngoing));
+    dispatch(filterCompleted(fileteredCompleted));
+    dispatch(filterArchived(fileteredArchived));
+  };
 
   return (
     <section className="w-full h-[100vh] overflow-y-auto mx-auto sm:px-6 py-10 relative">
@@ -37,7 +62,8 @@ const ProjectHome = () => {
               </span>
             </button>
             <input
-              className="md:w-96 w-full text-sm p-3 bg-secondary rounded-md"
+              onChange={searchResult}
+              className="md:w-96 w-full text-sm p-3 bg-secondary text-gray-200 rounded-md"
               type="text"
               placeholder="Search Your Project..."
             />
