@@ -24,7 +24,7 @@ const UserIntro = () => {
       <p className="text-gray-300 text-sm tracking-wider font-medium">
         Good {timeContext(hours)},
       </p>
-      <div className=" text-gray-400 font-light min-w-max text-xs tracking-wider">
+      <div className="break-words text-gray-400 font-light min-w-max text-xs tracking-wider">
         {todayDate}
       </div>
       <div className="text-gray-600 font-bold min-w-max flex justify-start items-center pt-2 mt-4 border-t-[1px] border-blureffect gap-2">

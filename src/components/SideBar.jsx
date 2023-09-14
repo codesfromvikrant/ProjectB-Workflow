@@ -1,25 +1,33 @@
 import React from "react";
 import Logo from "../assets/icons/workflow.png";
 import UserIntro from "./UserIntro";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import exploreIcon from "../assets/icons/explore.png";
 import projectIcon from "../assets/icons/project_lab.png";
 import notesIcon from "../assets/icons/notes.png";
 import galleryIcon from "../assets/icons/gallery.png";
-import supportIcon from "../assets/icons/support.png";
+//import supportIcon from "../assets/icons/support.png";
 import logoutIcon from "../assets/icons/log_out.png";
 import LinkedinIcon from "../assets/icons/linkedin.png";
+import { setLoggedIn } from "../features/authSlice";
 
 const SideBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const signOut = () => {
+    sessionStorage.removeItem("user_data");
+    dispatch(setLoggedIn(false));
+    navigate("/");
+  };
   const sidebar = useSelector((state) => state.auth.show_sidebar);
   return (
     <div
       className={`${
         sidebar ? "lg:flex hidden" : ""
-      } "lg:flex justify-between items-start flex-col min-w-[13rem] h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8 lg:static fixed top-0 left-0 z-[99] shadow-md"`}
+      } "lg:flex justify-between items-start flex-col min-w-max h-[100vh] overflow-y-auto projects bg-secondary px-4 py-8 lg:static fixed top-0 left-0 z-[99] shadow-md"`}
     >
-      <div className="flex justify-start items-start gap-6 flex-col">
+      <div className="flex justify-start items-start gap-6 flex-col w-full">
         <div className="flex justify-center items-center gap-2 mx-auto">
           <img src={Logo} className="w-12" alt="mediaharbor-logo" />
           <p className="text-lg tracking-wide uppercase font-black text-center w-max text-gray-200">
@@ -95,11 +103,28 @@ const SideBar = () => {
               <img src={galleryIcon} className="w-7" />
               <p className="font-medium tracking-wide">My Gallery</p>
             </NavLink>
-            <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
+
+            {/* <NavLink
+              to="/user/help"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#2564eb68" : "",
+                  color: isActive ? "#fff" : "",
+                  border: isActive ? "2px solid #2563eb" : "",
+                  padding: isActive ? "0.5rem" : "",
+                  margin: isActive ? "0.3rem 0" : "",
+                };
+              }}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+            >
               <img src={supportIcon} className="w-7" />
               <p className="font-medium tracking-wide">Need Help</p>
-            </li>
-            <li className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer">
+            </NavLink> */}
+
+            <li
+              onClick={signOut}
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer"
+            >
               <img src={logoutIcon} className="w-7" />
               <p className="font-medium tracking-wide">LogOut</p>
             </li>
