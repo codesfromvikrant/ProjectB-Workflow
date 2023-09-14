@@ -106,6 +106,12 @@ const Layout = () => {
     }
   };
 
+  const signOut = () => {
+    sessionStorage.removeItem("user_data");
+    dispatch(setLoggedIn(false));
+    navigate("/");
+  };
+
   useEffect(() => {
     const user_data = JSON.parse(sessionStorage.getItem("user_data"));
 
@@ -121,7 +127,7 @@ const Layout = () => {
 
   return (
     <div>
-      <Outlet context={[googleAuth, gitAuth, emailAuth]} />
+      <Outlet context={[googleAuth, gitAuth, emailAuth, signOut]} />
     </div>
   );
 };
