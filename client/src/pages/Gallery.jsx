@@ -1,44 +1,24 @@
 import React, { useEffect } from "react";
 import UploadBtn from "../components/gallery/UploadBtn";
 import SearchBar from "../components/SearchBar";
+import { setGallery } from "../features/gallerySlice";
 import { useSelector, useDispatch } from "react-redux";
-import { storage } from "../firebase/config";
-import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
-import { setGallery, addToGallery } from "../features/gallerySlice";
 import ImagesGrid from "../components/gallery/ImagesGrid";
-import { doc } from "firebase/firestore";
+import axios from "axios";
 
 const Gallery = () => {
   const uid = useSelector((state) => state.auth.uid);
-  const filePath = `user/uid-${uid}/gallery/`;
   const dispatch = useDispatch();
 
   const getImageList = async () => {
     try {
-      const listRef = ref(storage, filePath);
-      const res = await listAll(listRef);
-
-      const images_data = res.items.map(async (item) => {
-        try {
-          const url = await getDownloadURL(item);
-          const metaRef = ref(storage, item.fullPath);
-          const metadata = await getMetadata(metaRef);
-          const data = {
-            url,
-            name: metadata.name,
-            size: metadata.size,
-            type: metadata.contentType,
-            timeCreated: metadata.timeCreated,
-          };
-          return data;
-        } catch (error) {
-          console.error(error.code, error.message);
-        }
-      });
-      const images = await Promise.all(images_data);
+      const res = await axios.get(
+        `http://localhost:3000/api/v1/gallery/${uid}`
+      );
+      const { images } = res.data;
       dispatch(setGallery(images));
-    } catch (error) {
-      console.error(error.code, error.message);
+    } catch (err) {
+      console.error(err.message);
     }
   };
 

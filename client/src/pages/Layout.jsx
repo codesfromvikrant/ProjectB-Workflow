@@ -13,6 +13,7 @@ import { createDocInUsers, createDocInProjects } from "../utils/firestoreUtils";
 import { useSelector, useDispatch } from "react-redux";
 import { setAuth, setLoggedIn } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -78,6 +79,18 @@ const Layout = () => {
         })
       );
     } else {
+      const createGallery = async () => {
+        try {
+          const res = await axios.post("http://localhost:3000/api/v1/gallery", {
+            userID: user.uid,
+          });
+          console.log(res);
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+      createGallery();
+
       createDocInUsers(
         {
           uid: user.uid,
