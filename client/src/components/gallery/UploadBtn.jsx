@@ -20,7 +20,7 @@ const UploadBtn = () => {
       formData.append("userID", uid);
 
       const res = await axios.patch(
-        "http://localhost:3000/api/v1/gallery/upload",
+        "http://localhost:3000/api/v1/gallery",
         formData
       );
       const { result } = res.data;
