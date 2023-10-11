@@ -35,7 +35,7 @@ const UploadBtn = () => {
     <form
       onSubmit={uploadImage}
       method="post"
-      action="http://localhost:3000/api/v1/gallery/upload"
+      action="https://workflow-api-m51h.onrender.com/api/v1/gallery/upload"
       encType="multipart/form-data"
     >
       <div className="flex justify-between sm:items-center items-start sm:flex-row flex-col md:w-max w-full gap-3 p-2 rounded-md shadow z-50 bg-secondary ">

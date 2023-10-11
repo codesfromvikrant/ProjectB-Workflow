@@ -9,7 +9,8 @@ const mongoose = require('mongoose');
 
 const galleryRoutes = require('./routes/galleryRoutes');
 
-const DB_URL = process.env.DATABASE_URL;
+// const DB_URL = process.env.DATABASE_URL;
+const DB_URL = "mongodb+srv://chaudharyvikrant2000:vikrant2000@cluster0.uqgimnj.mongodb.net/"
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
