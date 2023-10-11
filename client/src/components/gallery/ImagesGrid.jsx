@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { nanoid } from "nanoid";
-import Menu from "../Menu";
-import ImageDialog from "../dialog/ImageDialog";
+import { useSelector, useDispatch } from "react-redux";
+import { setGallery } from "../../features/gallerySlice";
+import axios from "axios";
 
 const option = {
   weekday: "long",
@@ -11,6 +10,8 @@ const option = {
   day: "numeric",
 };
 const ImagesGrid = () => {
+  const dispatch = useDispatch();
+  const uid = useSelector((state) => state.auth.uid);
   const images = useSelector((state) => state.gallery.images);
 
   const viewDetails = (id) => {
@@ -21,9 +22,17 @@ const ImagesGrid = () => {
     const details = document.getElementById(id);
     details.classList.add("hidden");
   };
-  const showDialog = (id) => {
-    const dialog = document.getElementById(id);
-    dialog.classList.toggle("hidden");
+
+  const deleteImage = async (publicID) => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3000/api/v1/gallery/${uid}?publicID=${publicID}`
+      );
+      console.log(res.status, res.data);
+      if (res.status === 200) {
+        dispatch(setGallery(res.data.result.images));
+      }
+    } catch (err) {}
   };
 
   const renderImages = images.map((obj) => {
@@ -37,48 +46,49 @@ const ImagesGrid = () => {
     const formattedDate = date.toLocaleDateString("en-US", option);
     const formattedTime = date.toLocaleTimeString("en-US");
 
-    const nanoId = nanoid();
     return (
       <div
-        key={nanoId}
+        key={obj.public_id}
         onMouseOver={() => {
-          viewDetails(`details-${nanoId}`);
+          viewDetails(`details-${obj.public_id}`);
         }}
         onMouseLeave={() => {
-          hideDetails(`details-${nanoId}`);
+          hideDetails(`details-${obj.public_id}`);
         }}
         style={style}
         className="flex justify-end items-end w-full h-[18rem] relative rounded-md cursor-pointer shadow-blue-900 shadow"
       >
         <div
-          onClick={() => {
-            showDialog(`dialog-${nanoId}`);
-          }}
-          className=""
+          id={`details-${obj.public_id}`}
+          className="hidden bg-white text-slate-800 tracking-wide transition-all duration-500 backdrop-blur-md w-full p-2 rounded-b-md"
         >
-          <Menu />
-        </div>
-        <ImageDialog id={nanoId} />
-        <div
-          id={`details-${nanoId}`}
-          className="hidden bg-bgblack tracking-wide transition-all duration-500 backdrop-blur-md w-full p-2 rounded-b-md"
-        >
-          <p className="text-white text-xs font-semibold break-words">
-            {obj.original_filename}
+          <p className="text-xs font-extrabold break-words">
+            {obj.original_filename}.{obj.format}
           </p>
-          <p className="text-white my-1 text-xs font-medium break-words">
+          <p className="my-1 text-xs font-extrabold break-words">
             File Size : {sizeInKB.toFixed(2)} Kb
           </p>
-          <p className="text-white my-1 text-xs font-medium break-words">
+          <p className="my-1 text-xs font-extrabold break-words">
             Date : {formattedDate}
           </p>
-          <p className="text-white my-1 text-xs font-medium break-words">
+          <p className="my-1 text-xs font-extrabold break-words">
             Time : {formattedTime}
           </p>
-          <div className="flex justify-center items-center gap-2 p-2 rounded mt-2 bg-blureffect shadow transition-all duration-500 hover:bg-blue-700">
-            <span className="text-white text-xs font-semibold tracking-wide">
+          <div className="flex justify-center items-center gap-2 p-2 rounded mt-2 bg-gray-300 shadow transition-all duration-500 hover:bg-blue-700 hover:text-white hover:text-semibold">
+            <span className="text-xs font-extrabold tracking-wide">
               View Image
             </span>
+          </div>
+          <div className="flex justify-center items-center gap-2 text-xs font-extrabold  text-slate-800 mt-2 ">
+            <button
+              onClick={() => deleteImage(obj.public_id)}
+              className="w-full p-2 rounded bg-gray-300 shadow-md transition-all duration-500 hover:bg-blue-700 hover:text-white hover:text-semibold"
+            >
+              Delete
+            </button>
+            <button className="w-full p-2 rounded bg-gray-300 shadow-md transition-all duration-500 hover:bg-blue-700 hover:text-white hover:text-semibold">
+              Download
+            </button>
           </div>
         </div>
       </div>
