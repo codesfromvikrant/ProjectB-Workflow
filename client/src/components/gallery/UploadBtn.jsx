@@ -4,57 +4,60 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToGallery } from "../../features/gallerySlice";
 import { storage } from "../../firebase/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import axios from "axios";
 
 const UploadBtn = () => {
   const [errorMsg, setErrorMsg] = useState("");
-  const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const browseRef = useRef(null);
-  const valid_types = ["image/jpeg", "image/png", "image/jpg"];
+  const dispatch = useDispatch();
 
-  const uploadImage = () => {
+  const uploadImage = async (e) => {
+    e.preventDefault();
     setErrorMsg("");
-    const image_file = browseRef.current.files[0];
-    if (!image_file) {
-      setErrorMsg("* Please select an image to upload");
-      return;
+    try {
+      const formData = new FormData(e.target);
+      formData.append("userID", uid);
+
+      const res = await axios.patch(
+        "http://localhost:3000/api/v1/gallery/upload",
+        formData
+      );
+      const { result } = res.data;
+      dispatch(addToGallery(result));
+    } catch (err) {
+      console.log(err);
+      setErrorMsg(err.message);
     }
-    const filetype = image_file.type;
-    if (!valid_types.includes(filetype)) {
-      setErrorMsg("* Upload only an image file (png or jpg or jpeg)");
-      return;
-    }
-    const storageRef = ref(
-      storage,
-      `user/uid-${uid}/gallery/${image_file.name}`
-    );
-    uploadBytes(storageRef, image_file).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        dispatch(addToGallery(url));
-      });
-    });
   };
 
   return (
-    <>
+    <form
+      onSubmit={uploadImage}
+      method="post"
+      action="http://localhost:3000/api/v1/gallery/upload"
+      encType="multipart/form-data"
+    >
       <div className="flex justify-between sm:items-center items-start sm:flex-row flex-col md:w-max w-full gap-3 p-2 rounded-md shadow z-50 bg-secondary ">
         <input
           ref={browseRef}
           type="file"
+          accept="image/*"
+          name="image"
           className="custom-file-input font-lato cursor-pointer text-sm text-gray-200 rounded-md"
         />
-        <div
-          onClick={uploadImage}
+        <button
+          type="submit"
           className="flex justify-start items-center sm:w-max w-full gap-2 bg-blue-700 py-[0.4rem] px-6 rounded-md text-white shadow-md cursor-pointer"
         >
           <BiSolidCloudUpload className="text-xl" />
           <span className="text-sm font-lato font-semibold w-max">
             Upload Images
           </span>
-        </div>
+        </button>
       </div>
-      <p className="text-red-400">{errorMsg}</p>
-    </>
+      <p className="text-red-400 text-sm font-medium">{errorMsg}</p>
+    </form>
   );
 };
 
