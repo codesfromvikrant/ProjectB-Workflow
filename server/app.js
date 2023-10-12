@@ -21,7 +21,7 @@ db.once("open", () => {
   console.log("Connected to DB");
 });
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'https://workflow-mern.vercel.app' }));
 app.use(bodyParser.text({ type: '/' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
