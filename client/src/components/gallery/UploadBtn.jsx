@@ -2,8 +2,7 @@ import React, { useState, useRef } from "react";
 import { BiSolidCloudUpload } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { addToGallery } from "../../features/gallerySlice";
-import { storage } from "../../firebase/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import axios from "axios";
 
 const UploadBtn = () => {
@@ -12,6 +11,8 @@ const UploadBtn = () => {
   const browseRef = useRef(null);
   const dispatch = useDispatch();
 
+  const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
+
   const uploadImage = async (e) => {
     e.preventDefault();
     setErrorMsg("");
@@ -19,10 +20,7 @@ const UploadBtn = () => {
       const formData = new FormData(e.target);
       formData.append("userID", uid);
 
-      const res = await axios.patch(
-        "http://localhost:3000/api/v1/gallery",
-        formData
-      );
+      const res = await axios.patch(`${apiBaseURL}/api/v1/gallery`, formData);
       const { result } = res.data;
       dispatch(addToGallery(result));
     } catch (err) {

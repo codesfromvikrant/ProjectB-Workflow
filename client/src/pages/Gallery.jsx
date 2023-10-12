@@ -10,11 +10,10 @@ const Gallery = () => {
   const uid = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
 
+  const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
   const getImageList = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3000/api/v1/gallery/${uid}`
-      );
+      const res = await axios.get(`${apiBaseURL}/api/v1/gallery/${uid}`);
       const { images } = res.data;
       dispatch(setGallery(images));
     } catch (err) {
