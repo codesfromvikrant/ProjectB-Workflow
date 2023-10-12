@@ -23,10 +23,11 @@ const ImagesGrid = () => {
     details.classList.add("hidden");
   };
 
+  const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
   const deleteImage = async (publicID) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/v1/gallery/${uid}?publicID=${publicID}`
+        `${apiBaseURL}/${uid}?publicID=${publicID}`
       );
       console.log(res.status, res.data);
       if (res.status === 200) {

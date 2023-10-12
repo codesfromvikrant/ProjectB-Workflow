@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
     "firebase": "^10.1.0",
     "formdata-node": "^5.0.1",
     "html-react-parser": "^4.2.1",
