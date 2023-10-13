@@ -10,7 +10,6 @@ const mongoose = require('mongoose');
 const galleryRoutes = require('./routes/galleryRoutes');
 
 const DB_URL = process.env.DATABASE_URL;
-
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -21,7 +20,8 @@ db.once("open", () => {
   console.log("Connected to DB");
 });
 
-app.use(cors({ origin: 'https://workflow-mern.vercel.app' }));
+const clientURL = process.env.CLIENT_URL;
+app.use(cors({ origin: clientURL }));
 app.use(bodyParser.text({ type: '/' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
