@@ -1,5 +1,6 @@
 const Gallery = require('../models/gallery');
 const { query } = require('express');
+const https = require('https');
 const fs = require('fs');
 const cloudinary = require('../middlewares/cloudinary');
 
@@ -47,7 +48,7 @@ exports.deleteImage = async (req, res) => {
   try {
     const { userID } = req.params;
     const { publicID } = req.query;
-    await cloudinary.uploader.destroy(publicID, (err) => {
+    cloudinary.uploader.destroy(publicID, (err) => {
       if (err) throw err;
       console.log('Image deleted from cloudinary!');
     });

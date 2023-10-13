@@ -5,9 +5,11 @@ import { setGallery } from "../features/gallerySlice";
 import { useSelector, useDispatch } from "react-redux";
 import ImagesGrid from "../components/gallery/ImagesGrid";
 import axios from "axios";
+import ImageViewer from "../components/gallery/ImageViewer";
 
 const Gallery = () => {
   const uid = useSelector((state) => state.auth.uid);
+  const viewImage = useSelector((state) => state.gallery.viewImage);
   const dispatch = useDispatch();
 
   const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
@@ -31,14 +33,15 @@ const Gallery = () => {
   }, [uid]);
 
   return (
-    <main className="py-2 sm:px-6 px-4 w-full h-[100vh] overflow-y-auto">
-      <div className="max-w-6xl mx-auto h-[100vh]">
+    <main className="py-2 sm:px-6 px-4 w-full h-[100vh] overflow-y-auto relative">
+      <div className="max-w-6xl mx-auto">
         <div className="my-4 flex justify-start items-center md:flex-row flex-col gap-2">
           <UploadBtn />
           <SearchBar />
         </div>
         <ImagesGrid />
       </div>
+      {viewImage && <ImageViewer />}
     </main>
   );
 };
