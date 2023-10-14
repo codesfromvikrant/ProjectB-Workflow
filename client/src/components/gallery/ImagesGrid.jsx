@@ -17,7 +17,6 @@ const ImagesGrid = () => {
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.auth.uid);
   const images = useSelector((state) => state.gallery.images);
-
   const viewDetails = (id) => {
     const details = document.getElementById(id);
     details.classList.remove("hidden");
