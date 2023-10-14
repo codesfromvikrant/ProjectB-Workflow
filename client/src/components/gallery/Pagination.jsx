@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-const Pagination = ({ totalComp, notesPerPage }) => {
+const Pagination = ({ limit }) => {
+  const totalComp = useSelector((state) => state.gallery.totalImages);
+  console.log(totalComp, limit);
   const [start, setStart] = useState(1);
   const [end, setEnd] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,7 +17,7 @@ const Pagination = ({ totalComp, notesPerPage }) => {
     });
   };
 
-  const totalPages = Math.ceil(totalComp / notesPerPage) || 1;
+  const totalPages = Math.ceil(totalComp / limit) || 1;
   const btnCount = 4;
 
   useEffect(() => {
@@ -38,7 +41,10 @@ const Pagination = ({ totalComp, notesPerPage }) => {
             ? "bg-glassyblue border-2 border-blue-600"
             : "bg-secondary"
         } text-gray-200 px-4 py-2 rounded shadow text-sm font-medium`}
-        onClick={() => paginate("page", btn)}
+        onClick={() => {
+          paginate("page", btn);
+          paginate("limit", limit);
+        }}
       >
         {btn}
       </button>

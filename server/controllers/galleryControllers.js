@@ -7,8 +7,18 @@ const cloudinary = require('../middlewares/cloudinary');
 exports.getAllImages = async (req, res) => {
   try {
     const { userID } = req.params;
-    const result = await Gallery.findOne({ userID });
-    res.status(200).json(result);
+    const search = req.query.search || '';
+    let result = await Gallery.findOne({ userID });
+    let images = result.images.filter(image => image.original_filename.includes(search));
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const startIndex = (page - 1) * limit;
+    let endIndex = page * limit;
+    const total_images = images.length;
+    if (endIndex > total_images) endIndex = total_images;
+    images = images.slice(startIndex, endIndex);
+
+    res.status(200).json({ images, total_images });
   } catch (err) {
     console.log(err);
   }
