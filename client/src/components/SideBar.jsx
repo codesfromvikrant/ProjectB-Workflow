@@ -7,8 +7,9 @@ import exploreIcon from "../assets/icons/explore.png";
 import projectIcon from "../assets/icons/project_lab.png";
 import notesIcon from "../assets/icons/notes.png";
 import galleryIcon from "../assets/icons/gallery.png";
-//import supportIcon from "../assets/icons/support.png";
+import supportIcon from "../assets/icons/support.png";
 import logoutIcon from "../assets/icons/log_out.png";
+import settingIcon from "../assets/icons/settings.png";
 import LinkedinIcon from "../assets/icons/linkedin.png";
 import { setLoggedIn } from "../features/authSlice";
 
@@ -47,7 +48,7 @@ const SideBar = () => {
                   margin: isActive ? "0.3rem 0" : "",
                 };
               }}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-primary cursor-pointer"
             >
               <img src={exploreIcon} className="w-7" />
               <p className="font-medium text-base tracking-wide">Explore</p>
@@ -64,7 +65,7 @@ const SideBar = () => {
                   margin: isActive ? "0.3rem 0" : "",
                 };
               }}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-primary cursor-pointer"
             >
               <img src={projectIcon} className="w-7" />
               <p className="font-medium tracking-wide">Projects Lab</p>
@@ -81,7 +82,7 @@ const SideBar = () => {
                   margin: isActive ? "0.3rem 0" : "",
                 };
               }}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-primary cursor-pointer"
             >
               <img src={notesIcon} className="w-7" />
               <p className="font-medium tracking-wide">Notes & Docs</p>
@@ -98,14 +99,14 @@ const SideBar = () => {
                   margin: isActive ? "0.3rem 0" : "",
                 };
               }}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-primary cursor-pointer"
             >
               <img src={galleryIcon} className="w-7" />
               <p className="font-medium tracking-wide">My Gallery</p>
             </NavLink>
 
-            {/* <NavLink
-              to="/user/help"
+            <NavLink
+              to="/user/settings"
               style={({ isActive }) => {
                 return {
                   backgroundColor: isActive ? "#2564eb68" : "",
@@ -115,15 +116,15 @@ const SideBar = () => {
                   margin: isActive ? "0.3rem 0" : "",
                 };
               }}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-blue-600 cursor-pointer"
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2 hover:bg-primary cursor-pointer"
             >
-              <img src={supportIcon} className="w-7" />
-              <p className="font-medium tracking-wide">Need Help</p>
-            </NavLink> */}
+              <img src={settingIcon} className="w-7" />
+              <p className="font-medium tracking-wide">Settings</p>
+            </NavLink>
 
             <li
               onClick={signOut}
-              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-blue-600 cursor-pointer"
+              className="flex justify-start items-center gap-2 text-slate-400 hover:text-gray-200 transition-all duration-500 py-1 hover:py-2 w-full rounded-lg hover:px-2  hover:bg-primary cursor-pointer"
             >
               <img src={logoutIcon} className="w-7" />
               <p className="font-medium tracking-wide">LogOut</p>

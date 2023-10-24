@@ -4,6 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorControllers');
 
 const mongoose = require('mongoose');
 
@@ -28,9 +30,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/gallery', galleryRoutes);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.use('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))
 });
 
+app.use(globalErrorHandler);
 
 module.exports = app;

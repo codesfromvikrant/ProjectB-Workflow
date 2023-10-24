@@ -49,7 +49,7 @@ const Completed = () => {
     return (
       <div
         key={project.id}
-        className="w-full p-3 bg-secondary rounded-md text-sm text-gray-200 relative flex-col flex justify-start items-start"
+        className="w-full p-3 bg-secondary  border-[1px] border-gray-800 shadow  rounded-md text-sm text-gray-200 relative flex-col flex justify-start items-start"
       >
         <div
           onClick={() => showOngoingDropdown(`drop-${project.id}`)}
