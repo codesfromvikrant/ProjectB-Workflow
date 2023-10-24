@@ -58,13 +58,11 @@ const Tasks = () => {
 
   return (
     <section className="mt-4">
-      <div className="text-gray-200 flex justify-between items-center md:gap-0 sm:gap-3 gap-6 flex-col mb-10">
-        <h3 className="text-4xl font-semibold w-max">Manage Tasks</h3>
-
-        <div className="w-full flex sm:justify-between items-center sm:flex-row flex-col gap-4">
+      <div className="text-gray-200 flex justify-between items-center md:gap-0 sm:gap-3 gap-6 flex-col mb-4">
+        <div className="w-full flex sm:justify-end items-center sm:flex-row flex-col gap-4">
           <button
             onClick={getTasks}
-            className="text-gray-200 text-center text-sm font-medium sm:w-max w-full flex sm:justify-start justify-center items-center gap-2 bg-glassyblue border-2 border-blue-600 sm:py-2 py-3 px-8 rounded-md"
+            className="text-gray-200 text-center text-sm font-medium sm:w-max w-full flex sm:justify-start justify-center items-center gap-2 bg-primary border-[1px] border-gray-800 sm:py-2 py-3 px-8 rounded-md"
           >
             <BiSolidAddToQueue className="text-base" />
             <span>Add New Task</span>

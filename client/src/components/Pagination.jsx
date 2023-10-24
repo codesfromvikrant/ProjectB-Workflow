@@ -72,32 +72,30 @@ const Pagination = ({ totalComp, notesPerPage }) => {
   };
 
   return (
-    <div className="w-max flex justify-center items-center mx-auto ">
-      <div className="flex justify-center items-center gap-2 text-sm">
-        <button
-          disabled={totalPages > btnCount ? false : true}
-          onClick={prev}
-          className={`${
-            totalPages > btnCount
-              ? "opacity-100 hover:bg-blue-600 cursor-pointer"
-              : "opacity-20"
-          } text-gray-200 bg-secondary transition-all duration-400 rounded shadow font-medium py-2 px-4`}
-        >
-          Prev
-        </button>
-        {btnList}
-        <button
-          disabled={totalPages > btnCount ? false : true}
-          onClick={next}
-          className={`${
-            totalPages > btnCount
-              ? "opacity-100 hover:bg-blue-600 cursor-pointer"
-              : "opacity-20"
-          } text-gray-200 bg-secondary  transition-all duration-400 rounded shadow font-medium py-2 px-4`}
-        >
-          Next
-        </button>
-      </div>
+    <div className="flex justify-center items-center gap-2 text-sm">
+      <button
+        disabled={totalPages > btnCount ? false : true}
+        onClick={prev}
+        className={`${
+          totalPages > btnCount
+            ? "opacity-100 hover:bg-blue-600 cursor-pointer"
+            : "opacity-20"
+        } text-gray-200 bg-secondary transition-all duration-400 rounded shadow font-medium py-2 px-4`}
+      >
+        Prev
+      </button>
+      {btnList}
+      <button
+        disabled={totalPages > btnCount ? false : true}
+        onClick={next}
+        className={`${
+          totalPages > btnCount
+            ? "opacity-100 hover:bg-blue-600 cursor-pointer"
+            : "opacity-20"
+        } text-gray-200 bg-secondary  transition-all duration-400 rounded shadow font-medium py-2 px-4`}
+      >
+        Next
+      </button>
     </div>
   );
 };
