@@ -1,10 +1,9 @@
 const Gallery = require('../models/gallery');
 const { query } = require('express');
-const https = require('https');
-const fs = require('fs');
+const catchAsync = require('../utils/catchAsync');
 const cloudinary = require('../middlewares/cloudinary');
 
-exports.getAllImages = async (req, res) => {
+exports.getAllImages = catchAsync(async (req, res, next) => {
   try {
     const { userID } = req.params;
     const search = req.query.search || '';
@@ -31,47 +30,40 @@ exports.getAllImages = async (req, res) => {
     console.log(err);
     res.status(500).json({ message: 'Internal server error' });
   }
-};
+});
 
-exports.createGallery = async (req, res) => {
-  try {
-    const { userID } = req.body;
-    const gallery = new Gallery({
-      userID,
-      images: []
-    });
-    const newGallery = await gallery.save();
-    res.status(200).json({ message: "Gallery Built Successfully!", newGallery });
-  } catch (err) {
-    console.log(err);
-  }
-};
+exports.createGallery = catchAsync(async (req, res, next) => {
+  const { userID } = req.body;
+  const gallery = new Gallery({
+    userID,
+    images: []
+  });
 
-exports.uploadImage = async (req, res) => {
-  try {
-    const { userID } = req.body;
-    const uploadedImage = req.file;
+  const newGallery = await gallery.save();
+  res.status(200).json({ message: "Gallery Built Successfully!", newGallery });
+});
 
-    const result = await cloudinary.uploader.upload(uploadedImage.path, { folder: `user-${userID}/` });
-    result && fs.unlink(uploadedImage.path, (err) => {
-      if (err) throw err;
-      console.log('File deleted!');
-    });
+exports.uploadImage = catchAsync(async (req, res, next) => {
+  const { userID } = req.body;
+  const uploadedImage = req.file;
 
-    await Gallery.findOneAndUpdate({ userID }, { $push: { images: result } }, { new: true });
-    res.status(200).json({ message: 'Image uploaded', result });
-  } catch (err) { console.log(err) }
-};
+  const result = await cloudinary.uploader.upload(uploadedImage.path, { folder: `user-${userID}/` });
+  result && fs.unlink(uploadedImage.path, (err) => {
+    if (err) throw err;
+    console.log('File deleted!');
+  });
 
-exports.deleteImage = async (req, res) => {
-  try {
-    const { userID } = req.params;
-    const { publicID } = req.query;
-    cloudinary.uploader.destroy(publicID, (err) => {
-      if (err) throw err;
-      console.log('Image deleted from cloudinary!');
-    });
-    const result = await Gallery.findOneAndUpdate({ userID }, { $pull: { images: { public_id: publicID } } }, { new: true });
-    res.status(200).json({ message: 'Image deleted', result });
-  } catch (err) { console.log(err) }
-};
+  await Gallery.findOneAndUpdate({ userID }, { $push: { images: result } }, { new: true });
+  res.status(200).json({ message: 'Image uploaded', result });
+});
+
+exports.deleteImage = catchAsync(async (req, res, next) => {
+  const { userID } = req.params;
+  const { publicID } = req.query;
+  cloudinary.uploader.destroy(publicID, (err) => {
+    if (err) throw err;
+    console.log('Image deleted from cloudinary!');
+  });
+  const result = await Gallery.findOneAndUpdate({ userID }, { $pull: { images: { public_id: publicID } } }, { new: true });
+  res.status(200).json({ message: 'Image deleted', result });
+});
